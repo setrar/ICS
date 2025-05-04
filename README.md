@@ -45,7 +45,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [ManagIntro](https://www.eurecom.fr/en/course/managintro-2024fall)       | Introduction to Management                     |      |  1   | Kenneth POPE       |
 | [Property](https://www.eurecom.fr/en/course/property-2024fall)           | Intellectual property law                      |      |  0.5 | Dominique SERIO    | 
 | [RDI](https://www.eurecom.fr/en/course/rdi-2024fall)                     | Responsible DI: Risks, Ethics and Tech         |      |  0.5 | Kenneth POPE       |
-| [TeamLead](https://www.eurecom.fr/en/course/teamlead-2024fall) [🧻](https://github.com/setrar/teamlead) ✅  | Personal Development and Team Leadership       |      |  1   | Andrew PRIOR       | 
+| [TeamLead](https://www.eurecom.fr/en/course/teamlead-2024fall) [🧻](TeamLead) ✅  | Personal Development and Team Leadership       |      |  1   | Andrew PRIOR       | 
 | TU ✅ | [Scientific and Technical opening 3](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific%20and%20technical%20opening%203,ECTS)|  5 | | | |
 | [ATWireless](https://www.eurecom.fr/en/course/ATWireless-2024fall)  [🧻](ATWireless) ✅  | Advanced topics in wireless communications     |      |  1.0 | Petros ELIA        |
 | [MobCom](https://www.eurecom.fr/en/course/mobcom-2024fall) [🧻](MobCom) ✅  | Mobile communication techniques	               |      |  1.0 | Petros ELIA        |
