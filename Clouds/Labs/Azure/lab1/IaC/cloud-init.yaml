@@ -1,0 +1,149 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - nginx
+  - nodejs
+  - npm
+  - docker.io
+
+write_files:
+  # NGINX Configuration for Reverse Proxy
+  - owner: www-data:www-data
+    path: /etc/nginx/sites-available/default
+    defer: true
+    content: |
+      server {
+        listen 80;
+        location / {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+      }
+
+  # Node.js Application Code
+  - owner: azureuser:azureuser
+    path: /home/azureuser/myapp/index.js
+    defer: true
+    content: |
+      const express = require('express');
+      const app = express();
+      const os = require('os');
+
+      // Middleware for logging
+      app.use((req, res, next) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+        next();
+      });
+
+      // Main Route
+      app.get('/', (req, res) => {
+        const hostname = os.hostname();
+        res.send(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>&#x26C5; Clouds: Lab1 </title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                text-align: center;
+              }
+              header {
+                background: #0078D4;
+                color: white;
+                padding: 1rem 0;
+              }
+              h1 {
+                font-size: 2.5rem;
+              }
+              p {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+              }
+              footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #666;
+              }
+            </style>
+          </head>
+          <body>
+            <header>
+              <h1>Welcome to the Cloud-Init &#x1F324; Web Server</h1>
+            </header>
+            <main>
+              <p>This page is served from host: <strong>${hostname}</strong></p>
+              <p>Congratulations! Your cloud-init script deployed this application.</p>
+              <p>The purpose of this <b>lab1</b> is to demonstrate how to use IaC (Infrastructure as Code)</p>
+              <p>The entire IaC Code for this lab can be accessed here  &#x1F449;<a href="https://github.com/setrar/Clouds/tree/main/Labs/Azure/lab1/IaC" target="_blank">IaC Lab1</a> </p>
+            </main>
+            <footer>
+              <p>&copy; 2025 Student: Brice Robert</p>
+            </footer>
+          </body>
+          </html>
+        `);
+      });
+
+      // 404 Route
+      app.use((req, res) => {
+        res.status(404).send('404: Page Not Found');
+      });
+
+      // Start Server
+      const PORT = 3000;
+      app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+      });
+
+  # Systemd Service for Node.js Application
+  - owner: root:root
+    path: /etc/systemd/system/myapp.service
+    defer: true
+    content: |
+      [Unit]
+      Description=Node.js Application
+      After=network.target
+
+      [Service]
+      ExecStart=/usr/bin/node /home/azureuser/myapp/index.js
+      Restart=always
+      User=azureuser
+      Group=azureuser
+      Environment=PATH=/usr/bin:/usr/local/bin
+      WorkingDirectory=/home/azureuser/myapp
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  # Enable and start Docker service
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker azureuser  # Add the default user to the Docker group
+
+  # Ensure NGINX is restarted with the updated configuration
+  - systemctl restart nginx
+
+  # Set up Node.js application
+  - mkdir -p /home/azureuser/myapp
+  - chown -R azureuser:azureuser /home/azureuser/myapp
+  - cd /home/azureuser/myapp
+  - npm install express
+
+  # Enable and start the Node.js application as a systemd service
+  - systemctl daemon-reload
+  - systemctl enable myapp
+  - systemctl start myapp
+
+
