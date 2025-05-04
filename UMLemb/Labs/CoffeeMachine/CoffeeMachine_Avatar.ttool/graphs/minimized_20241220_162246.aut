@@ -1,0 +1,4 @@
+des(0,3,2)
+(0,"!push_?pushTeaButton() [0...0]",1)
+(0,"!ejectCoin_?getCoin(1) [0...0]",0)
+(0,"!push_?pushCoffeeButton() [0...0]",1)

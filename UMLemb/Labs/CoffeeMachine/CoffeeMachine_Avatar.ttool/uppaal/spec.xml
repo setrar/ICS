@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nta>
+<declaration>
+//Global declarations
+
+// Declarations used for non synchronized gates
+urgent chan makeChoice;
+urgent chan Wallet__contentOfWallet;
+urgent chan CoffeeMachine__beverageReady;
+
+//Declarations for synchronous channels
+urgent chan CoffeeButton_push__CoffeeMachine_pushCoffeeButton;
+urgent chan Wallet_getCoin__CoffeeMachine_ejectCoin;
+urgent chan Wallet_putCoin__CoffeeMachine_getCoin;
+urgent chan TeaButton_push__CoffeeMachine_pushTeaButton;
+
+// Global parameters for method calls and signal exchange
+int actionint__0;
+
+
+int min(int x, int y) {
+  if(x&lt;y) {
+    return x;
+  }
+  return y;
+}
+
+int max(int x, int y) {
+  if(x&lt;y) {
+    return y;
+  }
+  return x;
+}
+</declaration>
+<template>
+<name>Wallet</name>
+<parameter></parameter>
+<declaration>int nbOfCoins = 2;
+int x = 1;
+int minUserDelay = 50;
+int maxUserDelay = 70;
+clock h__;
+</declaration>
+<location id="id0" x="-100" y="275">
+<name x="-90" y="280">id0</name>
+<urgent />
+</location>
+<location id="id1" x="5" y="-150">
+<name x="15" y="-145">id1</name>
+<committed />
+</location>
+<location id="id2" x="10" y="-80">
+<name x="20" y="-75">id2</name>
+</location>
+<location id="id3" x="15" y="-10">
+<name x="25" y="-5">id3</name>
+<committed />
+</location>
+<location id="id4" x="20" y="60">
+<name x="30" y="65">id4</name>
+<committed />
+</location>
+<location id="id5" x="25" y="130">
+<name x="35" y="135">id5</name>
+<urgent />
+</location>
+<location id="id6" x="30" y="200">
+<name x="40" y="205">id6</name>
+<committed />
+</location>
+<location id="id7" x="35" y="270">
+<name x="45" y="275">id7</name>
+<committed />
+</location>
+<location id="id8" x="40" y="340">
+<name x="50" y="345">id8</name>
+<label kind="invariant"  x="45" y="355">(h__ &lt;= (maxUserDelay))</label>
+</location>
+<location id="id9" x="45" y="410">
+<name x="55" y="415">id9</name>
+<committed />
+</location>
+<location id="id10" x="50" y="480">
+<name x="60" y="485">id10</name>
+<urgent />
+</location>
+<location id="id11" x="55" y="550">
+<name x="65" y="555">id11</name>
+<committed />
+</location>
+<init ref="id0" />
+<transition>
+<source ref="id0" />
+<target ref="id1" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="-42" y="-195">Wallet__contentOfWallet!</label>
+<label kind="assignment" x="-37" y="-185">actionint__0 =nbOfCoins</label>
+<nail x="-49" y="-189" />
+</transition>
+<transition>
+<source ref="id1" />
+<target ref="id2" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="26" y="-115" />
+</transition>
+<transition>
+<source ref="id2" />
+<target ref="id3" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="17" y="-55">Wallet_getCoin__CoffeeMachine_ejectCoin?</label>
+<label kind="assignment" x="22" y="-45">x = actionint__0</label>
+<nail x="1" y="-68" />
+</transition>
+<transition>
+<source ref="id3" />
+<target ref="id4" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="16" y="41" />
+</transition>
+<transition>
+<source ref="id4" />
+<target ref="id5" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="32" y="95">nbOfCoins = nbOfCoins+x</label>
+<nail x="6" y="100" />
+</transition>
+<transition>
+<source ref="id5" />
+<target ref="id6" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="32" y="155">Wallet__contentOfWallet!</label>
+<label kind="assignment" x="37" y="165">actionint__0 =nbOfCoins</label>
+<nail x="43" y="140" />
+</transition>
+<transition>
+<source ref="id6" />
+<target ref="id1" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="1" y="42" />
+</transition>
+<transition>
+<source ref="id2" />
+<target ref="id7" />
+<label kind="guard" x="22" y="75">nbOfCoins &gt; 0</label>
+<label kind="synchronisation" x="27" y="85">Wallet_putCoin__CoffeeMachine_getCoin!</label>
+<label kind="assignment" x="32" y="95">actionint__0 = x</label>
+<nail x="34" y="75" />
+</transition>
+<transition>
+<source ref="id7" />
+<target ref="id8" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="47" y="305">h__ = 0</label>
+<nail x="42" y="280" />
+</transition>
+<transition>
+<source ref="id8" />
+<target ref="id9" />
+<label kind="guard" x="42" y="355">(h__ &gt;= (minUserDelay))</label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="38" y="364" />
+</transition>
+<transition>
+<source ref="id9" />
+<target ref="id10" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="57" y="445">nbOfCoins = nbOfCoins-x</label>
+<nail x="29" y="456" />
+</transition>
+<transition>
+<source ref="id10" />
+<target ref="id11" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="57" y="505">Wallet__contentOfWallet!</label>
+<label kind="assignment" x="62" y="515">actionint__0 =nbOfCoins</label>
+<nail x="39" y="515" />
+</transition>
+<transition>
+<source ref="id11" />
+<target ref="id1" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="25" y="216" />
+</transition>
+</template>
+<template>
+<name>CoffeeMachine</name>
+<parameter></parameter>
+<declaration>int teaMinDelay = 3;
+int teaMaxDelay = 8;
+int coffeeMinDelay = 5;
+int coffeeMaxDelay = 10;
+int coinDelay = 50;
+int x = 0;
+int nbOfCoins = 0;
+clock h__;
+</declaration>
+<location id="id12" x="-100" y="1220">
+<name x="-90" y="1225">id12</name>
+<committed />
+</location>
+<location id="id13" x="5" y="-150">
+<name x="15" y="-145">id13</name>
+</location>
+<location id="id14" x="10" y="-80">
+<name x="20" y="-75">id14</name>
+<committed />
+</location>
+<location id="id15" x="15" y="-10">
+<name x="25" y="-5">id15</name>
+<committed />
+</location>
+<location id="id16" x="20" y="60">
+<name x="30" y="65">id16</name>
+<committed />
+</location>
+<location id="id17" x="25" y="130">
+<name x="35" y="135">id17</name>
+<committed />
+</location>
+<location id="id18" x="30" y="200">
+<name x="40" y="205">id18</name>
+<label kind="invariant"  x="35" y="215">h__ &lt;= coinDelay</label>
+</location>
+<location id="id19" x="35" y="270">
+<name x="45" y="275">id19</name>
+<committed />
+</location>
+<location id="id20" x="40" y="340">
+<name x="50" y="345">id20</name>
+<committed />
+</location>
+<location id="id21" x="45" y="410">
+<name x="55" y="415">id21</name>
+<committed />
+</location>
+<location id="id23" x="205" y="550">
+<name x="215" y="555">id23</name>
+</location>
+<location id="id25" x="65" y="690">
+<name x="75" y="695">id25</name>
+<committed />
+</location>
+<location id="id26" x="70" y="760">
+<name x="80" y="765">id26</name>
+<committed />
+</location>
+<location id="id27" x="75" y="830">
+<name x="85" y="835">id27</name>
+<committed />
+</location>
+<location id="id28" x="80" y="900">
+<name x="90" y="905">id28</name>
+<label kind="invariant"  x="85" y="915">h__ &lt;= coinDelay</label>
+</location>
+<location id="id29" x="85" y="970">
+<name x="95" y="975">id29</name>
+<committed />
+</location>
+<location id="id30" x="90" y="1040">
+<name x="100" y="1045">id30</name>
+<committed />
+</location>
+<location id="id31" x="95" y="1110">
+<name x="105" y="1115">id31</name>
+<committed />
+</location>
+<location id="id32" x="100" y="1180">
+<name x="110" y="1185">id32</name>
+<committed />
+</location>
+<location id="id34" x="110" y="1320">
+<name x="120" y="1325">id34</name>
+<committed />
+</location>
+<location id="id36" x="270" y="1460">
+<name x="280" y="1465">id36</name>
+</location>
+<location id="id39" x="285" y="1670">
+<name x="295" y="1675">id39</name>
+<committed />
+</location>
+<location id="id41" x="145" y="1810">
+<name x="155" y="1815">id41</name>
+<urgent />
+</location>
+<location id="id42" x="150" y="1880">
+<name x="160" y="1885">id42</name>
+<committed />
+</location>
+<location id="id43" x="155" y="1950">
+<name x="165" y="1955">id43</name>
+<committed />
+</location>
+<location id="id44" x="160" y="2020">
+<name x="170" y="2025">id44</name>
+<urgent />
+</location>
+<location id="id45" x="165" y="2090">
+<name x="175" y="2095">id45</name>
+<committed />
+</location>
+<location id="id46" x="170" y="2160">
+<name x="180" y="2165">id46</name>
+<committed />
+</location>
+<location id="id47" x="175" y="2230">
+<name x="185" y="2235">id47</name>
+<committed />
+</location>
+<location id="id48" x="180" y="2300">
+<name x="190" y="2305">id48</name>
+</location>
+<location id="id49" x="185" y="2370">
+<name x="195" y="2375">id49</name>
+<committed />
+</location>
+<location id="id50" x="190" y="2440">
+<name x="200" y="2445">id50</name>
+<committed />
+</location>
+<init ref="id12" />
+<transition>
+<source ref="id12" />
+<target ref="id13" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-27" y="-187" />
+</transition>
+<transition>
+<source ref="id13" />
+<target ref="id14" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="12" y="-125">Wallet_putCoin__CoffeeMachine_getCoin?</label>
+<label kind="assignment" x="17" y="-115">x = actionint__0</label>
+<nail x="17" y="-140" />
+</transition>
+<transition>
+<source ref="id14" />
+<target ref="id15" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="13" y="-45" />
+</transition>
+<transition>
+<source ref="id15" />
+<target ref="id16" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="27" y="25">nbOfCoins = nbOfCoins+x</label>
+<nail x="10" y="29" />
+</transition>
+<transition>
+<source ref="id16" />
+<target ref="id17" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="22" y="119" />
+</transition>
+<transition>
+<source ref="id17" />
+<target ref="id18" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="37" y="165">h__ = 0</label>
+<nail x="43" y="178" />
+</transition>
+<transition>
+<source ref="id18" />
+<target ref="id21" />
+<label kind="guard" x="37" y="285"></label>
+<label kind="synchronisation" x="42" y="295">Wallet_putCoin__CoffeeMachine_getCoin?</label>
+<label kind="assignment" x="47" y="305">x = actionint__0</label>
+<nail x="26" y="301" />
+</transition>
+<transition>
+<source ref="id21" />
+<target ref="id19" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="38" y="433" />
+</transition>
+<transition>
+<source ref="id18" />
+<target ref="id23" />
+<label kind="guard" x="117" y="355">h__ &gt;= coinDelay</label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="102" y="361" />
+</transition>
+<transition>
+<source ref="id23" />
+<target ref="id19" />
+<label kind="guard" x="207" y="565"></label>
+<label kind="synchronisation" x="212" y="575">Wallet_putCoin__CoffeeMachine_getCoin?</label>
+<label kind="assignment" x="217" y="585">x = actionint__0</label>
+<nail x="212" y="587" />
+</transition>
+<transition>
+<source ref="id23" />
+<target ref="id20" />
+<label kind="guard" x="122" y="425"></label>
+<label kind="synchronisation" x="127" y="435">makeChoice!</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="135" y="439" />
+</transition>
+<transition>
+<source ref="id19" />
+<target ref="id25" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="60" y="480">nbOfCoins = 2</label>
+<nail x="69" y="496" />
+</transition>
+<transition>
+<source ref="id25" />
+<target ref="id26" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="42" y="738" />
+</transition>
+<transition>
+<source ref="id26" />
+<target ref="id27" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="91" y="819" />
+</transition>
+<transition>
+<source ref="id27" />
+<target ref="id28" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="87" y="865">h__ = 0</label>
+<nail x="84" y="843" />
+</transition>
+<transition>
+<source ref="id28" />
+<target ref="id32" />
+<label kind="guard" x="90" y="1020"></label>
+<label kind="synchronisation" x="95" y="1030">CoffeeButton_push__CoffeeMachine_pushCoffeeButton?</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="98" y="1064" />
+</transition>
+<transition>
+<source ref="id32" />
+<target ref="id29" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="105" y="1228" />
+</transition>
+<transition>
+<source ref="id28" />
+<target ref="id34" />
+<label kind="guard" x="95" y="1090"></label>
+<label kind="synchronisation" x="100" y="1100">TeaButton_push__CoffeeMachine_pushTeaButton?</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="97" y="1099" />
+</transition>
+<transition>
+<source ref="id34" />
+<target ref="id30" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="110" y="1333" />
+</transition>
+<transition>
+<source ref="id28" />
+<target ref="id36" />
+<label kind="guard" x="175" y="1160">h__ &gt;= coinDelay</label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="154" y="1155" />
+</transition>
+<transition>
+<source ref="id36" />
+<target ref="id29" />
+<label kind="guard" x="272" y="1475"></label>
+<label kind="synchronisation" x="277" y="1485">CoffeeButton_push__CoffeeMachine_pushCoffeeButton?</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="270" y="1490" />
+</transition>
+<transition>
+<source ref="id36" />
+<target ref="id30" />
+<label kind="guard" x="275" y="1510"></label>
+<label kind="synchronisation" x="280" y="1520">TeaButton_push__CoffeeMachine_pushTeaButton?</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="298" y="1518" />
+</transition>
+<transition>
+<source ref="id36" />
+<target ref="id39" />
+<label kind="guard" x="277" y="1545"></label>
+<label kind="synchronisation" x="282" y="1555">Wallet_getCoin__CoffeeMachine_ejectCoin!</label>
+<label kind="assignment" x="287" y="1565">actionint__0 = nbOfCoins</label>
+<nail x="279" y="1587" />
+</transition>
+<transition>
+<source ref="id39" />
+<target ref="id31" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="262" y="1681" />
+</transition>
+<transition>
+<source ref="id29" />
+<target ref="id41" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="125" y="1390">nbOfCoins = 0</label>
+<nail x="101" y="1365" />
+</transition>
+<transition>
+<source ref="id41" />
+<target ref="id42" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="152" y="1835">CoffeeMachine__beverageReady!</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="133" y="1823" />
+</transition>
+<transition>
+<source ref="id42" />
+<target ref="id43" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="166" y="1897" />
+</transition>
+<transition>
+<source ref="id43" />
+<target ref="id12" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="11" y="882" />
+</transition>
+<transition>
+<source ref="id30" />
+<target ref="id44" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="135" y="1530">nbOfCoins = 0</label>
+<nail x="122" y="1515" />
+</transition>
+<transition>
+<source ref="id44" />
+<target ref="id45" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="167" y="2045">CoffeeMachine__beverageReady!</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="161" y="2034" />
+</transition>
+<transition>
+<source ref="id45" />
+<target ref="id46" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="164" y="2149" />
+</transition>
+<transition>
+<source ref="id46" />
+<target ref="id12" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="26" y="994" />
+</transition>
+<transition>
+<source ref="id31" />
+<target ref="id47" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="145" y="1670">nbOfCoins = 0</label>
+<nail x="117" y="1657" />
+</transition>
+<transition>
+<source ref="id47" />
+<target ref="id12" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="34" y="1024" />
+</transition>
+<transition>
+<source ref="id20" />
+<target ref="id48" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="122" y="1308" />
+</transition>
+<transition>
+<source ref="id48" />
+<target ref="id49" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="187" y="2325">Wallet_getCoin__CoffeeMachine_ejectCoin!</label>
+<label kind="assignment" x="192" y="2335">actionint__0 = nbOfCoins</label>
+<nail x="163" y="2336" />
+</transition>
+<transition>
+<source ref="id49" />
+<target ref="id50" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="197" y="2405">nbOfCoins = 0</label>
+<nail x="176" y="2424" />
+</transition>
+<transition>
+<source ref="id50" />
+<target ref="id12" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="40" y="1086" />
+</transition>
+</template>
+<template>
+<name>TeaButton</name>
+<parameter></parameter>
+<declaration>int mechanicalDelay = 10;
+clock h__;
+</declaration>
+<location id="id51" x="-100" y="30">
+<name x="-90" y="35">id51</name>
+<committed />
+</location>
+<location id="id52" x="5" y="-150">
+<name x="15" y="-145">id52</name>
+</location>
+<location id="id53" x="10" y="-80">
+<name x="20" y="-75">id53</name>
+<committed />
+</location>
+<location id="id54" x="15" y="-10">
+<name x="25" y="-5">id54</name>
+<label kind="invariant"  x="20" y="5">(h__ &lt;= (mechanicalDelay))</label>
+</location>
+<location id="id55" x="20" y="60">
+<name x="30" y="65">id55</name>
+<committed />
+</location>
+<init ref="id51" />
+<transition>
+<source ref="id51" />
+<target ref="id52" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-59" y="-200" />
+</transition>
+<transition>
+<source ref="id52" />
+<target ref="id53" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="12" y="-125">TeaButton_push__CoffeeMachine_pushTeaButton!</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="14" y="-122" />
+</transition>
+<transition>
+<source ref="id53" />
+<target ref="id54" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="22" y="-45">h__ = 0</label>
+<nail x="-10" y="-24" />
+</transition>
+<transition>
+<source ref="id54" />
+<target ref="id55" />
+<label kind="guard" x="17" y="5">(h__ &gt;= (mechanicalDelay))</label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-7" y="3" />
+</transition>
+<transition>
+<source ref="id55" />
+<target ref="id51" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-19" y="-83" />
+</transition>
+</template>
+<template>
+<name>CoffeeButton</name>
+<parameter></parameter>
+<declaration>int mechanicalDelay = 10;
+clock h__;
+</declaration>
+<location id="id56" x="-100" y="65">
+<name x="-90" y="70">id56</name>
+<committed />
+</location>
+<location id="id57" x="5" y="-150">
+<name x="15" y="-145">id57</name>
+<committed />
+</location>
+<location id="id58" x="10" y="-80">
+<name x="20" y="-75">id58</name>
+</location>
+<location id="id59" x="15" y="-10">
+<name x="25" y="-5">id59</name>
+<committed />
+</location>
+<location id="id60" x="20" y="60">
+<name x="30" y="65">id60</name>
+<label kind="invariant"  x="25" y="75">(h__ &lt;= (mechanicalDelay))</label>
+</location>
+<location id="id61" x="25" y="130">
+<name x="35" y="135">id61</name>
+<committed />
+</location>
+<init ref="id56" />
+<transition>
+<source ref="id56" />
+<target ref="id57" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-54" y="-196" />
+</transition>
+<transition>
+<source ref="id57" />
+<target ref="id58" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="31" y="-137" />
+</transition>
+<transition>
+<source ref="id58" />
+<target ref="id59" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="17" y="-55">CoffeeButton_push__CoffeeMachine_pushCoffeeButton!</label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="34" y="-50" />
+</transition>
+<transition>
+<source ref="id59" />
+<target ref="id60" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="27" y="25">h__ = 0</label>
+<nail x="34" y="30" />
+</transition>
+<transition>
+<source ref="id60" />
+<target ref="id61" />
+<label kind="guard" x="22" y="75">(h__ &gt;= (mechanicalDelay))</label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="36" y="88" />
+</transition>
+<transition>
+<source ref="id61" />
+<target ref="id56" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="0" y="0"></label>
+<label kind="assignment" x="0" y="0"></label>
+<nail x="-47" y="-44" />
+</transition>
+</template>
+<template>
+<name>Nonsync__actions</name>
+<parameter></parameter>
+<declaration></declaration>
+<location id="id62" x="0" y="-220">
+<name x="10" y="-215">id62</name>
+</location>
+<init ref="id62" />
+<transition>
+<source ref="id62" />
+<target ref="id62" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="5" y="-230">makeChoice?</label>
+<label kind="assignment" x="0" y="0"></label>
+</transition>
+<transition>
+<source ref="id62" />
+<target ref="id62" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="5" y="-230">Wallet__contentOfWallet?</label>
+<label kind="assignment" x="0" y="0"></label>
+</transition>
+<transition>
+<source ref="id62" />
+<target ref="id62" />
+<label kind="guard" x="0" y="0"></label>
+<label kind="synchronisation" x="5" y="-230">CoffeeMachine__beverageReady?</label>
+<label kind="assignment" x="0" y="0"></label>
+</transition>
+</template>
+<system>
+//Instanciation 
+Wallet__0 = Wallet();
+CoffeeMachine__1 = CoffeeMachine();
+TeaButton__2 = TeaButton();
+CoffeeButton__3 = CoffeeButton();
+Nonsync__actions__4 = Nonsync__actions();
+system Wallet__0,CoffeeMachine__1,TeaButton__2,CoffeeButton__3,Nonsync__actions__4;</system>
+</nta>

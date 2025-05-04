@@ -1,0 +1,99 @@
+p 100 100 Fuel_Quantity_Sensor__start__1846 1 n
+p 100 225 Fuel_Quantity_Sensor____StopState__1847 0 n
+p 350 100 Battery_Level_Sensor__start__1849 1 n
+p 350 225 Battery_Level_Sensor____StopState__1850 0 n
+p 700 100 Temperature_Sensor__start__1852 1 n
+p 700 225 Temperature_Sensor____StopState__1853 0 n
+p 1150 100 Position_Sensor_3D__start__1855 1 n
+p 1150 225 Position_Sensor_3D____StopState__1856 0 n
+p 1700 100 Ground_Station__start__1858 1 n
+p 1700 225 Ground_Station____StopState__1859 0 n
+p 2350 100 Space_Based_System_Software__start__1866 1 n
+p 2350 225 Space_Based_System_Software__Initialization__1865 0 n
+p 2350 350 Space_Based_System_Software__TC_Reception__1861 0 n
+p 2350 475 Space_Based_System_Software__Sensors_and_memory_ready__1862 0 n
+p 2350 600 Space_Based_System_Software__RF_Receiver_starts__1863 0 n
+p 2350 725 Space_Based_System_Software__Watchdog__1864 0 n
+p 3100 100 Sensors_API__start__1872 1 n
+p 3100 225 Sensors_API____StopState__1873 0 n
+p 3950 100 TM_Encipher_Module__start__1875 1 n
+p 3950 225 TM_Encipher_Module____StopState__1876 0 n
+p 4900 100 TC_Decipher_Module__start__1880 1 n
+p 4900 225 TC_Decipher_Module__Receive__receiveTCforDecryption__1879 0 n
+p 4900 350 TC_Decipher_Module__DecryptTC__1878 0 n
+p 5950 100 RF_Transmitter__start__1883 1 n
+p 5950 225 RF_Transmitter____StopState__1884 0 n
+p 5950 350 RF_Receiver__start__1886 1 n
+p 5950 475 RF_Receiver____StopState__1887 0 n
+p 7100 100 Encryption_Module__start__1889 1 n
+p 7100 225 Encryption_Module____StopState__1890 0 n
+p 5950 600 RF_Tranceiver__start__1892 1 n
+p 5950 725 RF_Tranceiver____StopState__1893 0 n
+t 200 112 t34 0 w n
+e Fuel_Quantity_Sensor__start__1846 t34 1 n
+e t34 Fuel_Quantity_Sensor____StopState__1847 1 n
+
+t 450 112 t35 0 w n
+e Battery_Level_Sensor__start__1849 t35 1 n
+e t35 Battery_Level_Sensor____StopState__1850 1 n
+
+t 800 112 t36 0 w n
+e Temperature_Sensor__start__1852 t36 1 n
+e t36 Temperature_Sensor____StopState__1853 1 n
+
+t 1250 112 t37 0 w n
+e Position_Sensor_3D__start__1855 t37 1 n
+e t37 Position_Sensor_3D____StopState__1856 1 n
+
+t 1800 112 t38 0 w n
+e Ground_Station__start__1858 t38 1 n
+e t38 Ground_Station____StopState__1859 1 n
+
+t 2450 112 t39 0 w n
+e Space_Based_System_Software__start__1866 t39 1 n
+e t39 Space_Based_System_Software__Initialization__1865 1 n
+
+t 2450 237 t40 0 w n
+e Space_Based_System_Software__Initialization__1865 t40 1 n
+e t40 Space_Based_System_Software__TC_Reception__1861 1 n
+
+t 2450 300 t41 0 w n
+e Space_Based_System_Software__Initialization__1865 t41 1 n
+e t41 Space_Based_System_Software__Sensors_and_memory_ready__1862 1 n
+
+t 2450 362 t42 0 w n
+e Space_Based_System_Software__Initialization__1865 t42 1 n
+e t42 Space_Based_System_Software__RF_Receiver_starts__1863 1 n
+
+t 2450 425 t43 0 w n
+e Space_Based_System_Software__Initialization__1865 t43 1 n
+e t43 Space_Based_System_Software__Watchdog__1864 1 n
+
+t 3200 112 t44 0 w n
+e Sensors_API__start__1872 t44 1 n
+e t44 Sensors_API____StopState__1873 1 n
+
+t 4050 112 t45 0 w n
+e TM_Encipher_Module__start__1875 t45 1 n
+e t45 TM_Encipher_Module____StopState__1876 1 n
+
+t 5000 237 t46 0 w n
+e TC_Decipher_Module__Receive__receiveTCforDecryption__1879 t46 1 n
+e t46 TC_Decipher_Module__DecryptTC__1878 1 n
+
+t 6050 112 t47 0 w n
+e RF_Transmitter__start__1883 t47 1 n
+e t47 RF_Transmitter____StopState__1884 1 n
+
+t 6050 362 t48 0 w n
+e RF_Receiver__start__1886 t48 1 n
+e t48 RF_Receiver____StopState__1887 1 n
+
+t 7200 112 t49 0 w n
+e Encryption_Module__start__1889 t49 1 n
+e t49 Encryption_Module____StopState__1890 1 n
+
+t 6050 612 t50 0 w n
+e RF_Tranceiver__start__1892 t50 1 n
+e t50 RF_Tranceiver____StopState__1893 1 n
+
