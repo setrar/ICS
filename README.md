@@ -91,7 +91,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 
 ### :abacus: Semester 7
 
-[:calendar: exam session schedule-february](semesters/S7/.schedule/exam%20session%20schedule-february.pdf)
+[:calendar: exam session schedule-february](classes/semesters/S7/.schedule/exam%20session%20schedule-february.pdf)
 
 | Semester 7                                                               |  [30 ECTS]                                 | ECTS | Coef | Teacher            | :warning:`prereq` |
 |--------------------------------------------------------------------------|--------------------------------------------|-----------:|:-----|--------------------|--------|
