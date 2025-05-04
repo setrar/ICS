@@ -84,7 +84,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [Radio](https://www.eurecom.fr/en/course/radio-2024spring) [🧻](https://github.com/setrar/IntroStat) ✅ | Radio engineering  |      | 0.5  | F. KALTENBERGER    |
 | [WiSec](https://www.eurecom.fr/en/course/wisec-2024spring)               | Wireless Security                              |      | 0.25 | A.FRANCILLON       |
 | TU  ✅     | [Scientific and Technical opening 2](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific%20and%20technical%20opening%202,ECTS)                           |  5   |            |      |                    |
-| [DigitalSystems](https://www.eurecom.fr/en/course/digitalsystems-2024spring) [🧻](https://github.com/setrar/ds) :x: | Digital Systems  | |  1   | Renaud PACALET     |
+| [DigitalSystems](https://www.eurecom.fr/en/course/digitalsystems-2024spring) [🧻](DigitalSystems) :x: | Digital Systems  | |  1   | Renaud PACALET     |
 | [IntroStat](https://www.eurecom.fr/en/course/introstat-2024spring) [🧻](https://github.com/setrar/IntroStat) :x:  | Intro Stats  |  | .5  | Motonobu KANAGAWA|
 | [StudInit](https://www.eurecom.fr/en/course/StudInit-2024spring)  ✅     | Student Initiative                          |      |  .5    | Nassima CHARIET       |
 | TU   ✅ | [Language](https://www.eurecom.fr/en/course/addlang-2024spring) |  1   |                                     |      |                    | 
