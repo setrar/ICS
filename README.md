@@ -110,7 +110,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [ATWireless](https://www.eurecom.fr/en/course/ATWireless-2023fall)       | Advanced topics in wireless communications     |      |  0.5 | Petros ELIA |
 | [DigiCom](https://www.eurecom.fr/en/course/digicom-2023fall) [🧻](classes/DigiCom) ✅ | Digital communications | |  0.5 | Raymond KNOPP | [7](classes/prereq/7) |
 | [MobCom](https://www.eurecom.fr/en/course/mobcom-2023fall)               | Mobile communication techniques                |      |  0.5 | Petros ELIA        | 
-| [SSP](https://www.eurecom.fr/en/course/SSP-2023fall) [🧻](classes/SSP) :x: | Statistical signal processing   |      |  0.5 | Dirk SLOCK         |  [7](prereq/7) |
+| [SSP](https://www.eurecom.fr/en/course/SSP-2023fall) [🧻](classes/SSP) :x: | Statistical signal processing   |      |  0.5 | Dirk SLOCK         |  [7](classes/prereq/7) |
 | TU ✅ | [Scientific and Technical opening 1](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific,opening1)       |  5   |            |     |                    | 
 | [CompArch](https://www.eurecom.fr/en/course/comparch-2023fall) [🧻](classes/CA) :x: | Computer Architecture   |   |  1   | Renaud PACALET | 
 | [Aware](https://www.eurecom.fr/en/course/aware-2023fall)       ✅        | Awareness-raising to research                  |      |  0.5 | Co-teaching        |
