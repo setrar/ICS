@@ -1,0 +1,637 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "88b51765-5ff1-4157-b2d6-a0ebdcb3a1e2",
+   "metadata": {},
+   "source": [
+    "| Final Exam for ATW Fall-2022 |\n",
+    "|:-:|\n",
+    "| Petros Elia, elia@eurecom.fr | \n",
+    "| February 7th, 2023 |"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ec92c445-3891-4b23-8cb7-4de7988cd4c4",
+   "metadata": {},
+   "source": [
+    "$$\\text{Instructions}$$\n",
+    "\n",
+    "- Exercises fall in categories of 1-point and 2-point exercises.\n",
+    "- Total of $(14\\times1 + 3\\times3 + 1\\times4)$ +one extra credit exercise for $5$ points = total = $27 + 5 = 32$ points (where naturally the 100% grade corresponds to 27 points).\n",
+    "- The last exercise is for extra credit.\n",
+    "- Open book and open class notes are allowed (including notes taken by students during exam). No\n",
+    "other notes are allowed.\n",
+    "- Each answer should be clearly written, and the solution should be developed in detail.\n",
+    "- Mathematical derivations need to show all steps that lead to the answer.\n",
+    "- Partial credit will be given for incomplete solutions.\n",
+    "- There is NO penalty for incorrect solutions.\n",
+    "\n",
+    "$$\\text{Hints - equations - conventions:}$$\n",
+    "\n",
+    "- Notation\n",
+    "    - $R$ represents the rate of communication in bits per channel use (b.p.c.u),\n",
+    "    - $\\rho$ represents the SNR (signal to noise ratio),\n",
+    "    - $w$ will denote additive noise which will be distributed as a circularly symmetric Gaussian random variable $\\mathbb{C}\\mathcal{N}(0,N_0)$. If $N_0$ is not specified, then set $N_0 = 1$,\n",
+    "    - Remember: for a given signal-to-noise ratio (SNR), then SNR in dB is simply $10 \\log_{10}$ SNR\n",
+    "    - SISO stands for single-input single-output, MISO stands for multiple-input single output, SIMO stands for single-input multiple output, MIMO stands for multiple input multiple output.\n",
+    "    - CSIT stands for channel state information at the transmitter, while CSIR stands for channel state information at the receiver.\n",
+    "    - AWGN stands for additive white Gaussian noise\n",
+    "\n",
+    "- GOOD LUCK!!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8aa404a8-3363-4a1a-b253-5f4154876446",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{1)}$ ___(1 point)___. Consider a SISO setting, with no fading. Consider that the maximum possible rate (i.e., the capacity) is equal to $3$ bpcu. What is the minimum SNR required to achieve this rate?\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b4113660-6d19-4b7c-b6b9-02ab3c3b8a7a",
+   "metadata": {},
+   "source": [
+    "**Answer:**\n",
+    "\n",
+    "The capacity formula for a SISO channel without fading is given by the **Shannon capacity** equation:\n",
+    "\n",
+    "$\n",
+    "C = \\log_2(1 + \\text{SNR})\n",
+    "$\n",
+    "\n",
+    "Given $C = 3 \\, \\text{bpcu}$, solve for SNR:\n",
+    "\n",
+    "$\n",
+    "3 = \\log_2(1 + \\text{SNR})\n",
+    "$\n",
+    "\n",
+    "Convert to linear form:\n",
+    "\n",
+    "$\n",
+    "1 + \\text{SNR} = 2^3 = 8\n",
+    "$\n",
+    "\n",
+    "Thus, the minimum SNR required is:\n",
+    "\n",
+    "$\n",
+    "\\text{SNR} = 8 - 1 = 7\n",
+    "$\n",
+    "\n",
+    "**Final Answer:** The minimum SNR required is **7** (or **8.45 dB** if expressed in dB)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8b1ddcd1-3c8b-41db-9975-e4bdf20893d1",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{2)}$ ___(1 point)___. Consider a SISO fading channel with no CSIT. Imagine that we are not happy with a\n",
+    "probability of error $P_{\\text{err}} \\approx (SNR)^{−1}$. Suggest various ways we can decrease this down to $P_{\\text{err}} \\approx (SNR)^{−4}$\n",
+    "."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f1efc62f-489a-4fb2-a63f-5ecfd5c36b7f",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "To achieve $P_{\\text{err}} \\approx \\text{SNR}^{-4}$, increase diversity using:\n",
+    "\n",
+    "1. **Time Diversity:** Transmit over multiple independent time slots (e.g., through retransmissions or coding).  \n",
+    "2. **Frequency Diversity:** Use multiple independent frequency channels (e.g., OFDM).  \n",
+    "3. **Spatial Diversity:** Employ multiple antennas (e.g., MISO, SIMO) or space-time coding (e.g., Alamouti).  \n",
+    "4. **Error-Correcting Codes:** Apply powerful FEC codes (e.g., LDPC, turbo codes)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0454ea2c-d0d1-4769-b06d-25ebc00010a7",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{3)}$ ___(1 point)___. What are some of the advantages of **MISO** vs. **SIMO**?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d21b09f0-b936-4573-bb56-2ec90077f54e",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "- **Advantages of MISO over SIMO:**  \n",
+    "  1. **Beamforming gain:** MISO enables the transmitter to perform **beamforming**, focusing the signal in the direction of the receiver, improving SNR and range.  \n",
+    "  2. **Power efficiency:** MISO can distribute transmission power across multiple antennas, reducing overall energy consumption while maintaining performance.  \n",
+    "  3. **Interference control:** In multi-user scenarios, MISO allows for **precoding** to mitigate interference between users.  \n",
+    "\n",
+    "- **SIMO advantage:** SIMO provides **receive diversity** without requiring complex transmission strategies, which is simpler to implement but lacks beamforming capabilities."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4e88b624-1b3b-438b-a846-2825ef0ebd05",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{4)}$ ___(1 point)___. In multi-user **MISO** settings, describe some of the advantages and some of the disadvantages of matched filtering vs. zero forcing."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "02ab582f-33ec-43ac-a49a-801c023f9adf",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "- **Matched Filtering:**  \n",
+    "  - **Advantages:** Simple to implement, low computational complexity, maximizes signal power at each user.  \n",
+    "  - **Disadvantages:** Does not effectively handle inter-user interference, especially in high-user scenarios.\n",
+    "\n",
+    "- **Zero Forcing (ZF):**  \n",
+    "  - **Advantages:** Eliminates inter-user interference by orthogonalizing users' signals.  \n",
+    "  - **Disadvantages:** Higher computational complexity and sensitivity to noise amplification in low-SNR conditions."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "38a84aca-9da9-40ad-aa69-9b055abb2be3",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{5)}$ ___(1 point)___. Provide a real-life scenario that entails an AWGN channel and one that entails fast fading."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2741a9d2-b091-49d7-b90e-9c87a556ad24",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "- **AWGN Channel:** Communication between two stationary ground stations with minimal interference and obstacles (e.g., satellite-to-ground communication in clear weather).  \n",
+    "- **Fast Fading Channel:** Communication in a mobile environment, such as between a moving car and a base station, where rapid changes in the channel occur due to mobility and multipath effects."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "68105fcc-5805-42db-b797-4456bb5dc1f0",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{6)}$ ___(1 point)___. What is the main reason for using OFDM? (1 line)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aa47afc1-1dd1-4017-9cfe-4992db2017c2",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "The main reason for using **OFDM** is to convert a **frequency-selective fading** channel into multiple **flat-fading** subchannels, simplifying equalization and improving data transmission over broadband channels."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7ebf6367-881e-4849-ac99-0e57fbdfc27e",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{7)}$ ___(1 point)___. What is the complication that prevents interference alignment from being widely used in practice? (1 line)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d823c17b-9a4e-4b31-a447-f865ef815d0f",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "The main complication is the requirement for **perfect and global channel state information (CSI)** at all transmitters, which is difficult to achieve due to **feedback delays**, **channel estimation errors**, and **dynamic channel conditions**."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "58307a8d-3670-4847-89ee-849fd5db9bf2",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{8)}$ ___(1 point)___. What does channel hardening mean in Massive **MIMO**? (1-2 lines)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c2360910-52ce-433b-b741-2ea4acae932f",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "**Channel hardening** in Massive MIMO refers to the phenomenon where the effective channel gain becomes nearly **deterministic** as the number of antennas increases, reducing the impact of small-scale fading and improving **link reliability**."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a7c56479-e4a1-4273-b359-785837d0b908",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{9)}$ ___(1 point)___. What does favorable propagation mean in Massive MIMO and what does it imply for receiver and transmitter design? (2-3 lines)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "893f7d86-4678-4b5e-b190-f8fd525dacf7",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "**Favorable propagation** in Massive MIMO refers to the condition where the channel vectors between different users are **nearly orthogonal**. This implies:\n",
+    "- **Simpler receiver design** with minimal interference, allowing linear detectors like **ZF** or **MMSE** to perform well.  \n",
+    "- **Simpler transmitter design** with efficient **spatial multiplexing** and **precoding**, improving system capacity and user separation."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54ce5c48-71ef-4548-8f46-53ae84b13dc3",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{10)}$ ___(1 point)___. How would Cell-Free Massive MIMO allow us to reduce energy consumption? (1 line)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "63bf5851-008e-4750-aa4d-d11a01e6f9c8",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "Cell-Free Massive MIMO reduces energy consumption by using **distributed antennas** closer to users, which lowers path loss and enables **low-power beamforming** with improved energy efficiency."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5a408dcb-3437-4bee-b390-e6275e4c5db0",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{11)}$ ___(1 point)___. In a single-user MIMO channel, how much diversity gain would we be able to get if we employed a transmitter with 4 transmit antennas and a receiver with 2 receive antennas?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4173a1c2-cc2d-4e28-932e-081680365350",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "The **diversity gain** in a **single-user MIMO** channel is given by:\n",
+    "\n",
+    "$\\text{Diversity gain} = N_t \\cdot N_r$ Where:\n",
+    "- $N_t = 4$ (transmit antennas),\n",
+    "- $N_r = 2$ (receive antennas).\n",
+    "\n",
+    "Thus, the **diversity gain** is:\n",
+    "$\\text{Diversity gain} = 4 \\cdot 2 = \\boxed{ 8 }$\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f1a30605-9527-4548-aa90-6d3a124e83c4",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{12)}$ ___(1 point)___. In a single-user MISO channel, how much multiplexing gain would we be able to get if we employed a transmitter with 2 transmit antennas?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dc69407b-3d28-4f75-9d99-2bf9c9665fe4",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "In a **single-user MISO** channel, **multiplexing gain** refers to the maximum number of independent data streams that can be transmitted simultaneously.\n",
+    "\n",
+    "- With **2 transmit antennas** and **1 receive antenna**, the system can only transmit **1 spatial stream**, since there is only **1 receive antenna** to distinguish and decode the streams.\n",
+    "  \n",
+    "Thus, the **multiplexing gain** is **1**, even with multiple transmit antennas."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "29d749e2-b470-4bc5-90db-f00cc15b1a08",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{13)}$ ___(1 point)___. Consider a SISO fading channel with coherence time equal to $T_c = 10$ milli-seconds.\n",
+    "\n",
+    "Imagine that our boss imposes a delay constraint of $50$ms.\n",
+    "- What type of diversity do we expect to get here: time diversity or spatial diversity?\n",
+    "- What is the maximal such diversity?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "640c57c6-942f-4adc-85ee-36d720134eb1",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "- **Type of Diversity:**  \n",
+    "  **Time diversity** – Since it's a SISO (Single Input Single Output) channel, there are no multiple antennas to provide spatial diversity. However, multiple independent channel realizations can occur within the allowed delay period, enabling time diversity.\n",
+    "\n",
+    "- **Maximal Time Diversity:**  \n",
+    "  The number of independent channel realizations within the delay constraint is:  $\\text{Max time diversity} = \\frac{\\text{Delay constraint}}{T_c} = \\frac{50 \\, \\text{ms}}{10 \\, \\text{ms}} = \\boxed{ 5 }$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aee2639f-f9c6-4915-8e37-8da3e283ca29",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{14)}$ ___(1 point)___. Consider communication over a quasi-static $2 \\times 1$ **MISO** fading channel. Assume that you must draw symbols from 16-QAM.\n",
+    "- What is the diversity and the rate (in bpcu) given by the Alamouti code? Justify your answer."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "036b526b-87b4-4487-9836-f7aaf65618c3",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "1. **Diversity:**  \n",
+    "   The **Alamouti code** is a **space-time block code** for a **2 × 1 MISO** system. It provides full **diversity gain**, which is equal to the product of transmit and receive antennas:\n",
+    "$\\text{Diversity gain} = N_t \\cdot N_r = 2 \\cdot 1 = \\boxed{2}$\n",
+    "\n",
+    "2. **Rate (in bpcu):**  \n",
+    "   The **rate** of a code is given by:\n",
+    "$R = \\frac{\\text{Number of information symbols per codeword}}{\\text{Number of time slots}}$\n",
+    "\n",
+    "   - In the Alamouti code, 2 information symbols are transmitted over **2 time slots**.\n",
+    "   - Since 16-QAM encodes **4 bits per symbol**, the rate is:\n",
+    "$R = \\frac{2 \\cdot 4 \\, \\text{bits}}{2 \\, \\text{time slots}} = \\boxed{ 4 \\, \\text{bpcu}}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1e436249-68f9-4350-9636-8b1d1eec69a2",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{15)}$ ___(3 points)___. In the context of various strategies, answer if each of the following statements are true or false, justifying briefly your answers.\n",
+    "- In a **MISO** channel, we can get transmitter beamforming gain even without CSIT.\n",
+    "- A base station equipped with 5 antennas in the downlink, can simultaneously serve up to 5 users (single receive antenna each).\n",
+    "- A base station equipped with 5 antennas in the downlink, can simultaneously serve up to 10 users (two receive antennas each).\n",
+    "- A base station equipped with 4 antennas in the downlink, can simultaneously serve up to 2 users (two receive antennas each).\n",
+    "- Line of sight channels are detrimental for spatial multiplexing in both single-user and multiuser **MIMO**.\n",
+    "- For a **MIMO** receiver using spatial multiplexing, the complexity of ZF receiver is more than the complexity of the maximum-likelihood receiver.\n",
+    "- CSIT is easier to obtain than CSIR.\n",
+    "- CSIT is of cardinal importance in multi-user **MIMO**."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "00ede50f-c123-4409-9982-feda0e5c932a",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "\n",
+    "1. **In a MISO channel, we can get transmitter beamforming gain even without CSIT:**  \n",
+    "   $\\boxed{\\text{ False }}$ – Beamforming requires **channel state information at the transmitter (CSIT)** to direct the signal towards the receiver effectively.\n",
+    "2. **A base station with 5 antennas can simultaneously serve up to 5 users (single antenna each):**  \n",
+    "   $\\boxed{\\text{ True }}$ – With **5 antennas**, the base station can form **5 spatial streams**, allowing it to serve up to **5 single-antenna users** simultaneously through spatial multiplexing.\n",
+    "3. **A base station with 5 antennas can simultaneously serve up to 10 users (two antennas each):**  \n",
+    "   $\\boxed{\\text{ False }}$ – The base station can support a maximum of **5 spatial streams**, so it cannot serve **10 users** simultaneously, even if each user has two antennas.\n",
+    "4. **A base station with 4 antennas can simultaneously serve up to 2 users (two antennas each):**  \n",
+    "   $\\boxed{\\text{ True }}$ – The base station can support **4 spatial streams**. Two users with **2 antennas each** can be served if the channel supports full spatial rank.\n",
+    "5. **Line of sight channels are detrimental for spatial multiplexing in both single-user and multi-user MIMO:**  \n",
+    "   $\\boxed{\\text{ True }}$ – In line-of-sight (LOS) channels, **high correlation** between antenna signals can limit the spatial multiplexing gain due to poor channel rank.\n",
+    "6. **For a MIMO receiver using spatial multiplexing, the complexity of a ZF receiver is more than the complexity of a maximum-likelihood receiver:**  \n",
+    "   $\\boxed{\\text{ False }}$ – **Zero-forcing (ZF)** has lower complexity than **maximum-likelihood (ML)**, which involves exhaustive search over all possible transmitted symbol combinations.\n",
+    "7. **CSIT is easier to obtain than CSIR:**  \n",
+    "   $\\boxed{\\text{ False }}$ – **Channel state information at the receiver (CSIR)** is naturally obtained through pilot signals. **CSIT** requires feedback from the receiver, which introduces additional complexity and latency.\n",
+    "8. **CSIT is of cardinal importance in multi-user MIMO:**  \n",
+    "   $\\boxed{\\text{ True }}$ – CSIT enables **precoding** and **interference management** in multi-user MIMO, which are crucial for efficiently serving multiple users simultaneously."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a5e57375-8d00-4505-b5c9-fd080705ec2f",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{16)}$ ___(3 points)___.\n",
+    "- What are some reasons for transporting OFDM symbols in the frequency-domain in the O-RAN 7.2 fronthaul-protocol? (1-2 lines)\n",
+    "- What is the purpose of the ”control-plane” in a fronthaul protocol? (1 line)\n",
+    "- Why should radio units be time and frequency synchronized? (1 line)\n",
+    "- What are the main differences between CPRI and ECPRI?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6e634165-89c6-44e8-9147-49d6f5103e75",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "1. **Reasons for frequency-domain OFDM symbol transport in O-RAN 7.2:**  \n",
+    "   Reduces bandwidth and fronthaul latency by sending only **subcarrier data**, enabling efficient processing and scalability at the distributed unit (DU).\n",
+    "\n",
+    "2. **Purpose of the control-plane in a fronthaul protocol:**  \n",
+    "   It manages **configuration, scheduling, and coordination** of radio resources and data transport between DU and RU.\n",
+    "\n",
+    "3. **Need for time and frequency synchronization:**  \n",
+    "   Ensures **coordinated transmissions** across RUs, reducing interference and supporting **features like beamforming** and **network-wide synchronization**.\n",
+    "\n",
+    "4. **Differences between CPRI and eCPRI:**  \n",
+    "   - **CPRI:** Transports raw time-domain IQ samples, leading to high bandwidth requirements.  \n",
+    "   - **eCPRI:** Transports **processed data (e.g., frequency-domain)**, significantly reducing bandwidth and enabling packet-based transport over Ethernet/IP networks."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5f162289-2519-4c35-9964-9f027ce42be9",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{17)}$ ___(3 points)___. In the context of various strategies, answer the following with brief justification of your answers.\n",
+    "- How the capacity of a SU-MIMO channel is achieved when the channel is known at both the transmitter and the receiver?\n",
+    "- In a MU-MIMO channel, if I double the number of users I simultaneously serve, must I always half the individual rate to each user? Justify your answer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8d5fcf79-096c-4425-8d41-86009afcf55c",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "\n",
+    "1. **SU-MIMO Capacity Achievement:**  \n",
+    "   The capacity of a **Single-User MIMO (SU-MIMO)** channel is achieved through **singular value decomposition (SVD)** and **water-filling power allocation** across parallel eigenmodes of the channel. When the channel is fully known at both the transmitter and receiver, the transmitter uses **beamforming** along the channel's eigenvectors to maximize the achievable data rate.\n",
+    "\n",
+    "2. **MU-MIMO User Doubling and Rate:**  \n",
+    "   No, doubling the number of users does **not always halve** the individual rate.  \n",
+    "   - With **perfect channel state information (CSI)** and proper **precoding** (e.g., zero-forcing or MMSE), users can be spatially separated, allowing the system to maintain higher total throughput without strictly halving rates.\n",
+    "   - However, if CSI or precoding is inefficient or suboptimal, interference increases, potentially reducing user rates. Thus, it depends on system conditions and precoding strategies."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "263d1451-5419-412c-8bf5-25ed90459365",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{18)}$ ___(4 points)___. As in the matlab session, consider communication over the $3 \\times 1$ quasi-static fading **MISO** channel, using a diagonal code (see below for details) such that the channel model is given by\n",
+    "$$\n",
+    "\\overbrace{( y_1 \\; y_2 )}^{\\underline{y}} = \\theta \\; \\overbrace{(h_1 \\; h_2)}^{\\underline{h}} \\overbrace{\\Big(\\; \\begin{matrix} x_1 & 0 \\\\ 0 & x_2 \\end{matrix}\\; \\Big)}^{X_{\\text{tr}}} + \\overbrace{( w_1 \\, w_2 )}^{\\underline{w}}\n",
+    "$$\n",
+    "\n",
+    "where $h_i \\sim  \\mathbb{C}\\mathcal{N}(0,1)$ and $w_i \\sim  \\mathbb{C}\\mathcal{N}(0,1)$ and where $\\theta$ is the power normalization factor that lets you regulate SNR.\n",
+    "- Describe the ML decoding rule.\n",
+    "- Describe the cardinality$^1$ of code $\\mathcal{X}_{tr}$ if you wish a rate of $R = 4$ bpcu.\n",
+    "- For a desired rate of $R = 8$ bpcu, and a desired $SNR = 10$ dB (where by SNR we mean the AVERAGE signal power divided by the noise unit power, under QAM) then what is the normalizing factor $\\theta$?\n",
+    "- Imagine that what you transmit $(x_1,x_2)$ are independently chosen from 16-PAM, then\n",
+    "    - What is the rate of your code (in bpcu)?\n",
+    "    - What is the slope of your probability of error, in high SNR, if you plot on the y-axis the probability of error, in log scale $(\\log_{10}(\\text{Prob}))$, and the x-axis is the SNR, in dB?\n",
+    "- Imagine now that $( x_1 \\; x_2 ) = ( s_1 \\; s_2 ) \\cdot \\mathrm{Q}$, where $s1,s2$ are independently chosen from a **64-QAM** constellation, where the matrix $\\mathrm{Q}$ is a randomly chosen orthogonal matrix. Then\n",
+    "    - What is the rate of your code?\n",
+    "    - What is the aforementioned slope of your probability of error?\n",
+    " \n",
+    "$^1$ By cardinality we mean the number of matrices that the code has."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eb1b66ff-6a53-441e-84b9-7114f92571cc",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "#### **1. ML Decoding Rule:**\n",
+    "Given the model:  $\\underline{y} = \\theta \\, \\underline{h} X_{\\text{tr}} + \\underline{w}$\n",
+    "\n",
+    "The **Maximum Likelihood (ML)** decoding rule is:\n",
+    "$\\hat{X}_{\\text{tr}} = \\arg \\min_{X_{\\text{tr}} \\in \\mathcal{X}_{\\text{tr}}} \\| \\underline{y} - \\theta \\, \\underline{h} X_{\\text{tr}} \\|^2$\n",
+    "\n",
+    "#### **2. Cardinality of $\\mathcal{X}_{\\text{tr}}$ for $R = 4$ bpcu:**\n",
+    "The rate equation is:\n",
+    "$R = \\frac{\\log_2(\\text{Cardinality})}{T}$\n",
+    "\n",
+    "- Here $T = 2$ (as $X_{\\text{tr}}$ is a $2 \\times 2$ diagonal matrix). \n",
+    "- For $R = 4$ bpcu:\n",
+    "$4 = \\frac{\\log_2(\\text{Cardinality})}{2} \\quad \\Rightarrow \\quad \\text{Cardinality} = 2^8 = 256$\n",
+    "\n",
+    "Thus, the cardinality is **256**.\n",
+    "\n",
+    "#### **3. Normalizing factor $\\theta$ for $R = 8$ bpcu and $SNR = 10$ dB:**\n",
+    "- With $R = 8$ bpcu, each $x_1$ and $x_2$ is chosen from a $256$-QAM constellation ($2^{8/2} = 256$).\n",
+    "- Average power per $x_i$ for a $256$-QAM constellation is approximately:\n",
+    "$P_{\\text{signal}} = \\frac{256^2 - 1}{3} \\approx 21845 \\quad (\\text{normalized to unity grid spacing})$\n",
+    "\n",
+    "- SNR (in linear scale) is $10^{10/10} = 10$, and SNR = $\\frac{\\theta^2 P_{\\text{signal}}}{2}$.\n",
+    "\n",
+    "Solving for $\\theta$:\n",
+    "$10 = \\frac{\\theta^2 \\cdot 21845}{2} \\quad \\Rightarrow \\quad \\theta^2 = \\frac{20}{21845} \\quad \\Rightarrow \\quad \\theta = \\sqrt{\\frac{20}{21845}} \\approx 0.03$\n",
+    "\n",
+    "#### **4. Rate and Slope for 16-PAM:**\n",
+    "\n",
+    "- **Rate:**  \n",
+    "   For 16-PAM on each antenna, $R = \\log_2(16) \\times 2 = 8 \\, \\text{bpcu}$.\n",
+    "\n",
+    "- **Slope:**  \n",
+    "   In high SNR, the slope of the probability of error curve is determined by **diversity gain** $d$.\n",
+    "  - In a $3 \\times 1$ MISO system, $d = N_t = 3$.  \n",
+    "   Therefore, the slope is **$-3$** when plotted in log-log scale.\n",
+    "\n",
+    "#### **5. Rate and Slope with 64-QAM and Orthogonal Matrix:**\n",
+    "\n",
+    "- **Rate:**  \n",
+    "   Since $s_1, s_2$ are from a $64$-QAM constellation, each symbol contributes $6$ bits. With 2 time slots:\n",
+    "$R = 6 \\times 2 = 12 \\, \\text{bpcu}$\n",
+    "\n",
+    "- **Slope:**  \n",
+    "   The slope of the probability of error in high SNR is still given by the diversity gain $d = 3$.  \n",
+    "   Thus, the slope remains **$-3$**."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cd583694-ee66-4473-a3bb-c3959785a981",
+   "metadata": {},
+   "source": [
+    "$\\color{orange} \\large \\textbf{19)}$ ___(Extra Credit: 5 points)___. Consider communication over a quasi-static $2 \\times 2$ **MIMO** channel, utilizing\n",
+    "the space-time code $\\mathcal{X}= \\{ X_1,X_2,X_3,X_4 \\}$, where\n",
+    "\n",
+    "$X_1 = \\begin{bmatrix} 1 & -1 \\\\ 1 & 1 \\end{bmatrix}, X_2 = \\begin{bmatrix} 1 & 1 \\\\ -1 & 1 \\end{bmatrix}, X_3 = \\begin{bmatrix} -1 & -1 \\\\ 1 & -1 \\end{bmatrix}$ and $X_4 = \\begin{bmatrix} -1 & 1 \\\\ -1 & -1 \\end{bmatrix}$\n",
+    "\n",
+    "- What is the average SNR?\n",
+    "- What is the rate of the code in bpcu?\n",
+    "- What is the diversity gain of this code?\n",
+    "- What is the approximate (in the high SNR regime) probability of error of this code, if SNR is 30dB?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "08cf0417-5fa9-4315-8b0c-3b08376308ec",
+   "metadata": {},
+   "source": [
+    "#### **1) Average SNR**\n",
+    "\n",
+    "The SNR (Signal-to-Noise Ratio) depends on the transmitted power and noise variance. The **average SNR** is given by:\n",
+    "$\\text{SNR}_{\\text{avg}} = \\frac{\\mathbb{E}[\\|X\\|_F^2]}{2 \\sigma^2}$\n",
+    "\n",
+    "Here:\n",
+    "- $\\|X\\|_F^2$ is the Frobenius norm of the code matrices.\n",
+    "- The code matrices have entries of either $1$ or $-1$.\n",
+    "  \n",
+    "For any matrix $X_i$:\n",
+    "$\\|X_i\\|_F^2 = 1^2 + (-1)^2 + 1^2 + 1^2 = 4$\n",
+    "\n",
+    "Since each matrix has a Frobenius norm squared of 4, the average transmitted power is 4. Therefore, the average SNR is:\n",
+    "$\\text{SNR}_{\\text{avg}} = \\frac{4}{2 \\sigma^2}$\n",
+    "\n",
+    "Given that SNR = 30 dB:\n",
+    "$\\text{SNR}_{\\text{dB}} = 10 \\log_{10} \\left( \\frac{4}{2 \\sigma^2} \\right) = 30$\n",
+    "\n",
+    "Solving for $\\sigma^2$, we get:\n",
+    "$\\frac{4}{2 \\sigma^2} = 10^{3} \\quad \\Rightarrow \\quad \\sigma^2 = 2 \\times 10^{-3}$\n",
+    "\n",
+    "Thus, the average SNR is $30 \\, \\text{dB}$.\n",
+    "\n",
+    "#### **2) Rate of the code (in bits per channel use, bpcu)**\n",
+    "\n",
+    "The **rate** is given by:\n",
+    "$R = \\frac{\\log_2(M)}{T}$\n",
+    "\n",
+    "Here:\n",
+    "- $M = 4$ (4 codewords),\n",
+    "- $T = 2$ (each codeword matrix is transmitted over 2 time slots).\n",
+    "\n",
+    "Thus, the rate is:\n",
+    "$R = \\frac{\\log_2(4)}{2} = \\frac{2}{2} = 1 \\, \\text{bpcu}$\n",
+    "\n",
+    "#### **3) Diversity gain**\n",
+    "\n",
+    "The **diversity gain** $d$ measures the rate at which the probability of error decays with increasing SNR. For a $2 \\times 2$ MIMO system and a full-rank space-time code, the diversity gain is:\n",
+    "$d = N_t \\cdot N_r = 2 \\cdot 2 = 4$\n",
+    "\n",
+    "Thus, the diversity gain is **4**.\n",
+    "\n",
+    "#### **4) Approximate probability of error (high SNR)**\n",
+    "\n",
+    "At high SNR, the probability of error $P_e$ is approximated by:\n",
+    "$P_e \\approx c \\cdot \\left( \\frac{1}{\\text{SNR}} \\right)^d$\n",
+    "\n",
+    "Here:\n",
+    "- $d = 4$ is the diversity gain,\n",
+    "- SNR (linear) is $10^{3} = 1000$,\n",
+    "- $c$ is a constant that depends on the modulation and code.\n",
+    "\n",
+    "Assuming $c \\approx 1$ for simplicity, we have:\n",
+    "$P_e \\approx \\left( \\frac{1}{1000} \\right)^4 = 10^{-12}$\n",
+    "\n",
+    "Thus, the approximate probability of error is **$10^{-12}$**.\n",
+    "\n",
+    "### **Final Answers**\n",
+    "\n",
+    "1. **Average SNR:** $30 \\, \\text{dB}$\n",
+    "2. **Rate:** $1 \\, \\text{bpcu}$\n",
+    "3. **Diversity gain:** $4$\n",
+    "4. **Approximate probability of error:** $10^{-12}$"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Julia 1.11.3",
+   "language": "julia",
+   "name": "julia-1.11"
+  },
+  "language_info": {
+   "file_extension": ".jl",
+   "mimetype": "application/julia",
+   "name": "julia",
+   "version": "1.11.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
