@@ -26,7 +26,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 
 | Semester 9 |  [30 ECTS]                                                  | ECTS | Coef | Teacher            |
 |------------|-------------------------------------------------------------|-----:|:-----|--------------------|
-| TU    ✅    | [Semester Project](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Semester%20Project,ECTS)| 10  |  | | | 
+| TU    ✅    | [Semester Project](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Semester%20Project,ECTS) [🧻](classes/SemesterProject) ✅ | 10  |  | | | 
 | Semester ✅ | project 200 h                                               |      |            |      |                   |
 | TU   ✅    | [Advanced Telecom](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Advanced%20Telecom,ECTS)| 10 |  |  |  |
 | [Clouds](https://www.eurecom.fr/en/course/clouds-2024fall) [🧻](classes/Clouds) ✅  | Distributed Systems and Cloud Computing                |      | 0.5  | R APPUSWAMY        |
