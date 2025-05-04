@@ -81,7 +81,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [MALCOM](https://www.eurecom.fr/en/course/malcom-2024spring) [🧻](https://github.com/setrar/MalCom) ✅ | ML for Communication systems communication     |      | 0.5  | STAVROU Fotios     |
 | [MobAdv](https://www.eurecom.fr/en/course/mobadv-2024spring)             | Mobile Advanced Networks                       |      | 0.25 | Navid NIKAEIN      | 
 | [MobWat](https://www.eurecom.fr/en/course/mobwat-2024spring)             | Wireless Access Technologies                   |      | 0.25 | Jérôme HÄRRI       |
-| [Radio](https://www.eurecom.fr/en/course/radio-2024spring) [🧻](https://github.com/setrar/IntroStat) ✅ | Radio engineering  |      | 0.5  | F. KALTENBERGER    |
+| [Radio](https://www.eurecom.fr/en/course/radio-2024spring) [🧻](RADIO) ✅ | Radio engineering  |      | 0.5  | F. KALTENBERGER    |
 | [WiSec](https://www.eurecom.fr/en/course/wisec-2024spring)               | Wireless Security                              |      | 0.25 | A.FRANCILLON       |
 | TU  ✅     | [Scientific and Technical opening 2](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific%20and%20technical%20opening%202,ECTS)                           |  5   |            |      |                    |
 | [DigitalSystems](https://www.eurecom.fr/en/course/digitalsystems-2024spring) [🧻](DigitalSystems) :x: | Digital Systems  | |  1   | Renaud PACALET     |
