@@ -49,7 +49,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | TU ✅ | [Scientific and Technical opening 3](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific%20and%20technical%20opening%203,ECTS)|  5 | | | |
 | [ATWireless](https://www.eurecom.fr/en/course/ATWireless-2024fall)  [🧻](https://github.com/setrar/atwireless) ✅  | Advanced topics in wireless communications     |      |  1.0 | Petros ELIA        |
 | [MobCom](https://www.eurecom.fr/en/course/mobcom-2024fall) [🧻](https://github.com/setrar/mobcom) ✅  | Mobile communication techniques	               |      |  1.0 | Petros ELIA        |
-| [MathEng](https://www.eurecom.fr/en/course/matheng-2024fall) [🧻](https://github.com/setrar/matheng) :x: | Essential Mathematical Methods for Engineers   |      |  0.5 | Nicholas EVANS     |
+| [MathEng](https://www.eurecom.fr/en/course/matheng-2024fall) [🧻](MathEng) :x: | Essential Mathematical Methods for Engineers   |      |  0.5 | Nicholas EVANS     |
 | TU   ✅     | [Language](https://www.eurecom.fr/en/course/addlang-2024spring) |  1   |                                    |      |                    | 
 | Chinese  [🧻](https://github.com/setrar/chinese) ✅   |  |                                         |  1   |   Daphne Olson     | 
 |---------------|---------------------| ECTS |----|--------------------|--------|
