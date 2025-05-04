@@ -1,0 +1,69 @@
+% This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
+
+\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+
+\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+
+\title{IntroStat: Homework} % Sets article title
+\author{Brice Robert} % Sets authors name
+\date{\today} % Sets date for date compiled
+
+% The preamble ends with the command \begin{document}
+\begin{document} % All begin commands must be paired with an end command somewhere
+    \maketitle % creates title using information in preamble (title, author, date)
+
+\vspace{.4cm}
+    
+    \section{Basic Concepts} % creates a section
+    
+    The first words of the chapter brought me to the understanding of a concept a concept I had not thoroughly considered. The book discusses \textbf{Decision Theory}, which aids decision-making under ‘uncertainty’. However, this definition needs further clarification and a more concrete concept. We will assume that `uncertainty` is measurable and considered to be numerical quantities and let's give it a name $\theta$, from the Greek Alphabet. Since naming, let's try to relate uncertainty with the word, `Statistics`. We will discover later on that `Classical Statistics` are just pieces of information which is not enough to make best or accurate decisions. This is why there's a whole theory behind it. 
+
+\vspace{.3cm}
+
+    \section{Summary and Definitions} % creates a section
+
+    The chapter introduces the \textit{Basic Elements} by defining key terms and concepts, such as \textit{actions}, \textit{states of nature}, \textit{loss functions}, and \textit{decision rules}. Berger discusses how these components are used to frame decision problems in a statistical context.
+
+\vspace{.1cm}
+
+In a more theoretical term, the chapter goes by explaining the importance of \textbf{decision functions} in statistics, which map observed data to actions. It then explores how different \textit{states of nature} can affect \textit{outcomes}, emphasizing the role of \textbf{probability} in modeling uncertainty in these states.
+
+\vspace{.1cm}
+
+A significant portion of the chapter is dedicated to the concept of \textit{loss functions}, as Berger states "statisticians are pessimistic creatures", which quantify the cost associated with making incorrect decisions. Berger explains various types of loss functions and their implications for decision-making processes.
+
+\vspace{.1cm}
+
+Finally, the chapter covers \textit{risk functions}, which combine \textit{loss functions} and \textit{probability distributions} to assess the \textit{expected loss} from using particular \textit{decision rules}. Berger introduces the idea of \textit{minimizing risk} as a \textit{fundamental principle} in \textbf{decision-making}, setting the stage for further discussion on optimal decision rules and \textbf{Bayesian methods} in subsequent chapters.
+
+    \section{Discussion} % creates a section
+    
+    During my reading, I noticed some anecdotal elements that prompted reactions I would like to describe. This is a mathematical book and any book will come with some notations, characters, ideograms. To extend the thinking, Mathematics can be seen as another natural language with its own symbols, characters or "book code". For example, \textit{uncertain quantity} is expressed using $\theta$, the \textit{Loss Function} notation is kept simple with an $\mathcal{L}$ but then a \textit{Risk Function} $\mathcal{R}$ seems to be the \textit{loss functions} $\mathcal{L}$ mixed with some \textit{probability distributions} $\mathcal{P}(x)$ to assess the \textit{expected loss} $\mathbf{E}[.]$ from using particular \textit{decision rules} (some other notations to be written in LaTeX).
+
+\vspace{.1cm}
+    
+    The language starts to scramble in my head, a \textit{probability distribution} $\mathit{P}(A)$ of a random variable $X \in A$ than sometimes $X$ would be \textit{continuous}, Is it too much talkative?, does it have a big mouth $\int_A$?, or sometimes way too \textit{discrete} $\sum_{x \in A}$.? The story doesn't end here but it is somehow resumed in a closed-form similar to:
+    $$
+    E_0[h(X)] = \
+      \begin{cases}
+        \int_{\mathcal{X}}  		& \quad h(x)f(x|\theta) dx \quad \text{(continuous case)}, \\
+        \sum_{x \in \mathcal{X}}    & \quad h(x)f(x|\theta)    \qquad \text{(discrete case)}.
+      \end{cases} \\
+    $$
+    
+	But then you have the \textit{decision rules} to put in perspective, the randomized one $\delta^*(x,.)$, or the non randomized with the $<\delta>$ notation. The central point comes to the story telling coming from the data, the events, the intuition, and put together to make a sense of it all and make a decision. 
+
+\vspace{.2cm}
+
+To make ‘conscious’ decisions, as there are many from which to choose, it seems that adhering to a set of values is critical. At the end, we have some \textbf{principles} to follow. They may not be moral or ethical in the science field but they exist since they need to be numerical. In classical statistics, (i.e. the Frequentists), there are a few of these principles, the \textit{maximum likelihood}, the \textit{unbiasedness}, the \textit{minimum variance} and the popular \textit{least squares} principle. 
+
+\vspace{.2cm}
+
+In Decision Theory, the three most important ones are the \textit{Bayes Risk}, the \textit{minimax} and the \textit{invariance} principle. \textit{Minimax} (algorithm) sounds familiar since I used it in Game Theory while coding board games like Chess, Go, or Fanorona. In Decision Theory, it serves more as a conceptual guideline for decision-making.
+
+    \section{Foundations} % creates a section
+    
+    The last section talks about the Frequentist and Gaussian "war", from explaining, how the Classical Inference is misused, bringing the different perspectives (Frequentists and Conditional) and introducing the likelihood principle in the Bayesian and Frequentist contexts, while emphasizing that applying some Bayesian Analysis can be quite difficult. This seems to be the philosophical and methodological beginning of the \textbf{statistical decision theory}.
+
+
+\end{document} % This is the end of the document
