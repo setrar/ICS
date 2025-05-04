@@ -99,7 +99,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | Semester 7                                                               |  [30 ECTS]                                 | ECTS | Coef | Teacher            | :warning:`prereq` |
 |--------------------------------------------------------------------------|--------------------------------------------|-----------:|:-----|--------------------|--------|
 | TU ✅ | [Basics for Telecom](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=February,Telecom)                    | 10   |            |      |                    |
-| [MALIS](https://www.eurecom.fr/en/course/Malis-2023fall)  [🧻](https://github.com/setrar/malis) ✅  | Machine Learning and Intelligent | |  0.5 | Maria ZULUAGA| 
+| [MALIS](https://www.eurecom.fr/en/course/Malis-2023fall)  [🧻](MALIS) ✅  | Machine Learning and Intelligent | |  0.5 | Maria ZULUAGA| 
 | [Mobsys](https://www.eurecom.fr/en/course/Mobsys-2023fall) [🧻](mobsys) ✅  | Mobile communication systems |  | 0.5 | R.KNOPP/N. NIKAEIN |
 | [SysSec](https://www.eurecom.fr/en/course/SysSec-2023fall)               | System and Network Security                    |      |  0.5 | A. FRANCILLON      |
 | TU ✅ | [Humanities and social sciences 1](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Humanities%20and%20social%20Sciences%201,ECTS)                               |  4   |            |      |                    | 
