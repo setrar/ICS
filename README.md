@@ -15,9 +15,6 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 
 [COURSE DESCRIPTION](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=9,FALL)
 
-[FINAL GRADES](GRADES.md)
-
-
 ### :abacus: Semester 10
 
 | Semester 10 |  [30 ECTS]                                                 | ECTS | Coef | Teacher            |
