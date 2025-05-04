@@ -71,7 +71,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | TU  ✅ | [Mathematical & Algorithmic Methods](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Algorithmic%20Methods,ECTS)| 10   |   |   |    |
 | [AML](https://www.eurecom.fr/en/course/aml-2024spring)                   | Algorithmic Machine Learning                   |      | 0.25 | Pietro MICHIARDI   |
 | [ASI](https://www.eurecom.fr/en/course/asi-2024spring)                   | Advanced Statistical Inference                 |      | 0.5  | Motonobu KANAGAWA      |
-| [CompMeth](https://www.eurecom.fr/en/course/compmeth-2024spring) [🧻](https://github.com/setrar/CompMeth) ✅ | Computational Methods for digital com.         |      | 0.5  | Raymond KNOPP      | [8](prereq/8)
+| [CompMeth](https://www.eurecom.fr/en/course/compmeth-2024spring) [🧻](CompMeth) ✅ | Computational Methods for digital com.         |      | 0.5  | Raymond KNOPP      | [8](prereq/8)
 | [DeepLearning](https://www.eurecom.fr/en/course/DeepLearning-2024spring) | Deep Learning                                  |      | 0.25 | Pietro MICHIARDI   |
 | [Quantip](https://www.eurecom.fr/en/course/quantip-2024spring)           | Quantum                                        |      | 0.25 | Marios KOUNTOURIS  |
 | [SP4COM](https://www.eurecom.fr/en/course/SP4COM-2024spring) [🧻](SP4COM) ✅ | Signal Processing for Communications |      | 0.5  | Dirk SLOCK         |
