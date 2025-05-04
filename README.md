@@ -78,7 +78,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [WebInt](https://www.eurecom.fr/en/course/webint-2024spring)             | Interaction Design and Dev. of Modern Web App  |      | 0.25 | Raphaël TRONCY     |
 | TU   ✅    | [Networking for Telecom](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Networking,ECTS)| 10   |   |   |    | 
 | [InfoTheo_1](https://www.eurecom.fr/en/course/infotheo1-2024spring)      | Information Theory 1                           |      | 0.5  | Petros ELIA        |
-| [MALCOM](https://www.eurecom.fr/en/course/malcom-2024spring) [🧻](https://github.com/setrar/MalCom) ✅ | ML for Communication systems communication     |      | 0.5  | STAVROU Fotios     |
+| [MALCOM](https://www.eurecom.fr/en/course/malcom-2024spring) [🧻](MALCOM) ✅ | ML for Communication systems communication     |      | 0.5  | STAVROU Fotios     |
 | [MobAdv](https://www.eurecom.fr/en/course/mobadv-2024spring)             | Mobile Advanced Networks                       |      | 0.25 | Navid NIKAEIN      | 
 | [MobWat](https://www.eurecom.fr/en/course/mobwat-2024spring)             | Wireless Access Technologies                   |      | 0.25 | Jérôme HÄRRI       |
 | [Radio](https://www.eurecom.fr/en/course/radio-2024spring) [🧻](RADIO) ✅ | Radio engineering  |      | 0.5  | F. KALTENBERGER    |
