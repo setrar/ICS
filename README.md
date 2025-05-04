@@ -33,7 +33,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | Semester ✅ | project 200 h                                               |      |            |      |                   |
 | TU   ✅    | [Advanced Telecom](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Advanced%20Telecom,ECTS)| 10 |  |  |  |
 | [Clouds](https://www.eurecom.fr/en/course/clouds-2024fall) [🧻](https://github.com/setrar/clouds) ✅  | Distributed Systems and Cloud Computing                |      | 0.5  | R APPUSWAMY        |
-| [InfoTheo_2](https://www.eurecom.fr/en/course/infotheo2-2024fall) [🧻](https://github.com/setrar/infotheo_2) ✅  | Advanced Topics In Information Theory                  |      | 0.25 | Petros ELIA        |
+| [InfoTheo_2](https://www.eurecom.fr/en/course/infotheo2-2024fall) [🧻](InfoTheo_2) ✅  | Advanced Topics In Information Theory                  |      | 0.25 | Petros ELIA        |
 | [MPC](https://www.eurecom.fr/en/course/mpc-2024fall)                     | Multiparty Computation and Blockchains                 |      | 0.25 | Antonio FAONIO     |
 | [MobiSec](https://www.eurecom.fr/en/course/mobisec-2024fall)             | Mobile Systems and Smartphone Security                 |      | 0.5  | D. ANTONIOLI       |
 | [QUANTIS](https://www.eurecom.fr/en/course/mpc-2024fall)                 | Quantum Information Science                            |      | 0.25 | M. KOUNTOURIS      |
