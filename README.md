@@ -6,7 +6,7 @@
 
 ## :a: Program
 
-- [ ] [RULES AND REGULATIONS 2024-2025](https://www.eurecom.fr/sites/default/files/inline-files/ReglementEtudesDNM_2024-2025-EN.pdf)
+- [ ] [RULES AND REGULATIONS 2024-2025](inline-files/ReglementEtudesDNM_2024-2025-EN.pdf)
 
 MASTER'S DEGREES (MSC)
 IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent)
@@ -54,7 +54,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 
 ### :abacus: Semester 8
 
-[:calendar: Academic Schedules 2023-2024](https://www.eurecom.fr/sites/default/files/inline-files/CALENDAR_2023_2024_0.pdf)
+[:calendar: Academic Schedules 2023-2024](inline-files/CALENDAR_2023_2024_0.pdf)
 
 | Semester 8 |  [30 ECTS]                                                  | ECTS | Coef | Teacher            | :warning:`prereq` |
 |------------|-------------------------------------------------------------|-----:|:-----|--------------------|------------|
