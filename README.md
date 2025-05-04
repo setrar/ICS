@@ -82,7 +82,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [WiSec](https://www.eurecom.fr/en/course/wisec-2024spring)               | Wireless Security                              |      | 0.25 | A.FRANCILLON       |
 | TU  ✅     | [Scientific and Technical opening 2](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Scientific%20and%20technical%20opening%202,ECTS)                           |  5   |            |      |                    |
 | [DigitalSystems](https://www.eurecom.fr/en/course/digitalsystems-2024spring) [🧻](classes/DigitalSystems) :x: | Digital Systems  | |  1   | Renaud PACALET     |
-| [IntroStat](https://www.eurecom.fr/en/course/introstat-2024spring) [🧻](classes/https://github.com/setrar/IntroStat) :x:  | Intro Stats  |  | .5  | Motonobu KANAGAWA|
+| [IntroStat](https://www.eurecom.fr/en/course/introstat-2024spring) [🧻](classes/IntroStat) :x:  | Intro Stats  |  | .5  | Motonobu KANAGAWA|
 | [StudInit](https://www.eurecom.fr/en/course/StudInit-2024spring)  ✅     | Student Initiative                          |      |  .5    | Nassima CHARIET       |
 | TU   ✅ | [Language](https://www.eurecom.fr/en/course/addlang-2024spring) |  1   |                                     |      |                    | 
 | Chinese  [🧻](classes/https://github.com/setrar/chinese) ✅ |                            |                                            |  1   |   Daphne Olson     | 
