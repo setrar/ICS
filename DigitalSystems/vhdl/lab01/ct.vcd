@@ -1,0 +1,55 @@
+$date
+  Fri Mar 15 09:59:53 2024
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module env $end
+$upscope $end
+$scope module ct_sim $end
+$var reg 1 ! wire_out $end
+$var reg 4 " led[3:0] $end
+$var reg 1 # switch0 $end
+$var reg 1 $ wire_in $end
+$scope module u0 $end
+$var reg 1 % switch0 $end
+$var reg 1 & wire_in $end
+$var reg 1 ' wire_out $end
+$var reg 4 ( led[3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+b1001 "
+0#
+0$
+0%
+0&
+0'
+b1001 (
+#1000000
+b0101 "
+1$
+1&
+b0101 (
+#2000000
+1!
+1#
+1%
+1'
+#3000000
+b1001 "
+0$
+0&
+b1001 (
+#4000000
+0!
+0#
+0%
+0'

@@ -1,0 +1,1 @@
+![](../../../images/sr-fig.png)

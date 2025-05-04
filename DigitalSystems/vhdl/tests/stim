@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+rand() {
+    hexdump -vn4 -e'"%08X"' /dev/urandom
+}
+
+for (( i = 1; i <= 100; i++ )); do
+    n=0x$(rand)
+    (( r = n ^ 0xFFFFFFFF ))
+    printf "%08X %08X\n" "$n" "$r"
+done
+# vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:
