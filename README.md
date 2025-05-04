@@ -37,7 +37,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [MPC](https://www.eurecom.fr/en/course/mpc-2024fall)                     | Multiparty Computation and Blockchains                 |      | 0.25 | Antonio FAONIO     |
 | [MobiSec](https://www.eurecom.fr/en/course/mobisec-2024fall)             | Mobile Systems and Smartphone Security                 |      | 0.5  | D. ANTONIOLI       |
 | [QUANTIS](https://www.eurecom.fr/en/course/mpc-2024fall)                 | Quantum Information Science                            |      | 0.25 | M. KOUNTOURIS      |
-| [UMLEmb](https://www.eurecom.fr/en/course/UMLEmb-2024fall) [🧻](UmlEmb) :x:  | Designing embedded systems with UML                    |      | 0.25 | L. APVRILLE        |
+| [UMLEmb](https://www.eurecom.fr/en/course/UMLEmb-2024fall) [🧻](UMLemb) :x:  | Designing embedded systems with UML                    |      | 0.25 | L. APVRILLE        |
 | [WebSem](https://www.eurecom.fr/en/course/websem-2024fall)               | Semantic Web and Information Extraction Technologies	  |      | 0.25 | R. TRONCY          |
 | TU ✅ | [Humanities and social Sciences 3](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Humanities%20and%20social%20Sciences%203,ECTS)|  4 | | | | 
 | [B_INNOV](https://www.eurecom.fr/en/course/binnov-2024fall)              | How adopt 👍 posture, move idea to market!     |      |  1   | Séverine HERLIN    | 
