@@ -1,0 +1,2 @@
+- [ ] [Optimum_filtering.ipynb](https://perso.esiee.fr/~bercherj/Lectures_SignalProcessing/Optimum_filtering.ipynb)
+- [ ] [A Journey in Signal Processing with Jupyter](https://perso.esiee.fr/~bercherj/Lectures_SignalProcessing/)
