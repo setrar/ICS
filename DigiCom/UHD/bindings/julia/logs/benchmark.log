@@ -1,0 +1,35 @@
+
+[00:00:00.000041] Creating the usrp device with: ...
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B200mini
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX1
+
+[00:00:01.969808] Setting device timestamp to 0...
+[00:00:02.245944] Testing receive rate 56.000000 Msps on 1 channels
+[00:00:02.273626] Testing transmit rate 56.000000 Msps on 1 channels
+[00:00:12.525545] Benchmark complete.
+
+
+Benchmark rate summary:
+  Num received samples:     571020760
+  Num dropped samples:      41
+  Num overruns detected:    41
+  Num transmitted samples:  414681000
+  Num sequence errors (Tx): 0
+  Num sequence errors (Rx): 0
+  Num underruns detected:   101272
+  Num late commands:        0
+  Num timeouts (Tx):        2
+  Num timeouts (Rx):        0
+
+
+Done!
+

@@ -1,0 +1,15 @@
+
+[00:00:00.000028] Creating the usrp device with: ...
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B200mini
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX1
+
+[00:00:01.981462] Setting device timestamp to 0...
