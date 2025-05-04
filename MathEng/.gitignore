@@ -1,0 +1,10 @@
+.DS_Store
+
+.ipynb_checkpoints
+
+gr-temp
+
+*.aux
+*.log
+*.out
+*_files

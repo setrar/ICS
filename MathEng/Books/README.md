@@ -1,0 +1,5 @@
+- 000001079901 : Eurecom (Library) - Cote = TK5102.9 .M85 2002
+- 000001079902 : Eurecom (Library) - Cote = TK5102.9.M85 2002
+- 000001079903 : Eurecom (Library) - Cote = TK5102.9.M85 2002
+- 000001079904 : Eurecom (Library) - Cote = TK5102.9.M85 2002
+- 000001079905 : Eurecom (Library) - Cote = TK5102.9M85 2002
