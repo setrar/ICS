@@ -1,0 +1,1267 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Keep aspect ratio if custom image width or height is specified
+    \setkeys{Gin}{keepaspectratio}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{MOBCOM-MIdtermF2024}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \begin{longtable}[]{@{}c@{}}
+\toprule\noalign{}
+Mobile Communication Techniques \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Petros Elia, elia@eurecom.fr \\
+Midterm Exam \\
+November 21st, 2024 \\
+Time: 9:00-10:00 \\
+\end{longtable}
+
+    \[\text{Instructions}\]
+
+\begin{itemize}
+\item
+  Exercises fall in categories of 1-point and 2-point exercises.
+\item
+  Total of 11 ×1 + 2 ×2 = 15 points.
+\item
+  NOTE!!! The exam will be evaluated, out of 13 points. Any points you
+  get beyond 13 points, will be offered as extra bonus.
+\item
+  Each answer should be clearly written, and the solution should be
+  developed in detail.
+\item
+  Mathematical derivations need to show all steps that lead to the
+  answer.
+\item
+  Complete as many exercises as you can. Don't spend too much time on an
+  individual question.
+\item
+  There is NO penalty for incorrect solutions.
+\item
+  If in certain cases you are unable to provide rigorous mathematical
+  proofs, go ahead and provide intuitive justification of your answers.
+  Partial credit will be given.
+\item
+  Calculators are not allowed.
+\item
+  You are allowed your class notes and class book.
+\end{itemize}
+
+\[\text{Hints - equations - conventions:}\]
+
+\begin{itemize}
+\tightlist
+\item
+  Notation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    SISO = single-input single-output, MISO = multiple-input
+    single-output, SIMO = single-input multiple- output, MIMO =
+    single-input multiple-output,
+  \item
+    \(R\) represents the rate of communication in bits per channel use
+    (b.p.c.u),
+  \item
+    \(\rho\) represents the SNR (signal to noise ratio),
+  \item
+    \(w\) will denote additive noise which will be distributed as a
+    circularly symmetric Gaussian random variable
+    \(\mathbb{C}\mathcal{N}(0,N_0)\). If \(N_0\) is not specified, then
+    set \(N_0 = 1\),
+  \item
+    \(h_i\) will denote independent fading scalar coefficients which
+    will be distributed as circularly symmetric Gaussian random
+    variables \(\mathbb{C}\mathcal{N}(0,1)\).
+  \end{itemize}
+\item
+  GOOD LUCK!!
+\end{itemize}
+
+    \(\color{orange} \large \textbf{1)}\) (1 point). In a multi-path fading
+scenario with delay spread \(6\mu s\) and \(L = 3\) channel taps, what
+is the operational bandwidth \(W\)?
+
+    \subsubsection{\texorpdfstring{\textbf{Answer}:}{Answer:}}\label{answer}
+
+Given \(\tau_d = 6 \, \mu s\) and \(L = 3\): - Coherence bandwidth:
+\(B_c \approx \frac{1}{\tau_d} = \frac{1}{6 \times 10^{-6}} \approx 166.67 \, \text{kHz}\).
+- Operational bandwidth:
+\(W \approx L \cdot B_c  = 3 \cdot 166.67 = 500 \, \text{kHz}\).
+
+\(\boxed{W = 500 \, \text{kHz}}\)
+
+    \(\color{orange} \large \textbf{2)}\) (1 point). Imagine a given SNR
+equal to \(\rho\), and imagine that we are operating over a
+(quasi-static) Rayleigh fading SISO channel. Can you describe a code
+that achieves probability of error approximately equal to
+\(P_e \approx \rho^{−4}\), and rate equal to \(R = 2\) bpcu.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subparagraph{\texorpdfstring{\textbf{Solution 1: Repetition Code
+(256-QAM)}}{Solution 1: Repetition Code (256-QAM)}}\label{solution-1-repetition-code-256-qam}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Modulation}: 256-QAM (8 bits/symbol)\\
+\item
+  \textbf{Code}: Repetition factor = 4 (diversity order = 4)\\
+\item
+  \textbf{Rate}: \(R = \frac{8}{4} = 2 \, \text{bpcu}\)\\
+\item
+  \textbf{Error Probability}: \(P_e \approx \rho^{-4}\)\\
+\item
+  \textbf{Complexity}: High due to 256-QAM
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{Solution 2: Rotated Code
+(4-QAM)}}{Solution 2: Rotated Code (4-QAM)}}\label{solution-2-rotated-code-4-qam}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Modulation}: 4-QAM (2 bits/symbol)\\
+\item
+  \textbf{Code}: Rotated constellation across 4 time slots (diversity
+  order = 4)\\
+\item
+  \textbf{Rate}: \(R = 2 \, \text{bpcu}\)\\
+\item
+  \textbf{Error Probability}: \(P_e \approx \rho^{-4}\)\\
+\item
+  \textbf{Complexity}: Lower due to 4-QAM
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{Comparison}}{Comparison}}\label{comparison}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1942}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3883}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4175}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Feature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solution 1: Repetition Code (256-QAM)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solution 2: Rotated Code (4-QAM)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Modulation & 256-QAM (8 bits/symbol) & 4-QAM (2 bits/symbol) \\
+Code Type & Repetition code & Rotated time-diversity code \\
+Diversity Order & 4 & 4 \\
+Rate & 2 bpcu & 2 bpcu \\
+Error Probability & \(P_e \approx \rho^{-4}\) &
+\(P_e \approx \rho^{-4}\) \\
+Complexity & Higher decoding complexity & Lower decoding complexity \\
+\end{longtable}
+
+Both solutions achieve \textbf{rate = 2 bpcu} and \textbf{diversity
+order 4}, but the rotated 4-QAM code offers \textbf{lower complexity}.
+
+\paragraph{Note:}\label{note}
+
+\begin{itemize}
+\tightlist
+\item
+  Alamouti Code: Closely related to Solution 2 but typically designed
+  for MIMO (2 transmit antennas).
+\item
+  4-Dimensional Lattice Code: Matches Solution 2 with rotation and
+  symbol spreading across multiple time slots. This solution achieves
+  diversity order 4, fitting the requirement perfectly.
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{Diversity Order
+Overview}}{Diversity Order Overview}}\label{diversity-order-overview}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Definition}:\\
+  The number of independent signal paths used to combat fading. Error
+  probability decreases as \(P_e \approx \rho^{-d}\), where \(d\) is the
+  \textbf{diversity order}.
+\end{itemize}
+
+\textbf{Types of Diversity}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Time Diversity}: Transmit symbols across different time slots
+  (e.g., repetition coding).\\
+\item
+  \textbf{Frequency Diversity}: Transmit across multiple frequencies
+  (e.g., OFDM).\\
+\item
+  \textbf{Space Diversity}: Use multiple antennas (e.g., Alamouti code,
+  MIMO).\\
+\item
+  \textbf{Code Diversity}: Spread symbol components across independent
+  channels (e.g., rotated lattice codes).
+\end{enumerate}
+
+\textbf{Impact}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Higher diversity order} reduces the likelihood of deep fades
+  and improves error performance:\\
+  \(P_e \propto \rho^{-d}\)
+\end{itemize}
+
+\textbf{Examples}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Diversity Order 1}: SISO, \(P_e \propto \rho^{-1}\).\\
+\item
+  \textbf{Order 2}: Alamouti code with 2 antennas,
+  \(P_e \propto \rho^{-2}\).\\
+\item
+  \textbf{Order 4}: Rotated 4-QAM or repetition with 4 paths,
+  \(P_e \propto \rho^{-4}\).
+\end{enumerate}
+
+Higher diversity increases resilience against fading.
+
+    \(\color{orange} \large \textbf{3)}\) (1 point). How much time diversity
+will we get with the following SISO (time-diversity) channel model
+\[[y_1 \; y_2 \; y_3] = [h_1u_1 \quad h_2(u_1 + u_2) \quad h_3u_2] + [w_1 \; w_2 \; w_3]\]
+where the \(u_1,u_2,u_3\) are independent PAM elements. Justify your
+answer.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+To determine the \textbf{time diversity} in the given channel model:
+
+\subparagraph{Channel Model}\label{channel-model}
+
+\([y_1 \; y_2 \; y_3] = [h_1u_1 \quad h_2(u_1 + u_2) \quad h_3u_2] + [w_1 \; w_2 \; w_3],\)
+where \(u_1, u_2, u_3\) are independent PAM symbols, \(h_1, h_2, h_3\)
+are the channel coefficients, and \(w_1, w_2, w_3\) are noise terms.
+
+\subparagraph{Analysis}\label{analysis}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Definition of Time Diversity}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Time diversity is determined by the number of independently faded
+    channel coefficients (\(h_1, h_2, h_3\)) that affect the transmitted
+    symbols.
+  \end{itemize}
+\item
+  \textbf{Observation of Dependencies}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(y_1\) depends on \(h_1u_1\).
+  \item
+    \(y_2\) depends on \(h_2(u_1 + u_2)\).
+  \item
+    \(y_3\) depends on \(h_3u_2\).
+  \end{itemize}
+\item
+  \textbf{Diversity Order}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(u_1\) is present in both \(y_1\) and \(y_2\), thus contributing to
+    diversity through \(h_1\) and \(h_2\).
+  \item
+    \(u_2\) is present in both \(y_2\) and \(y_3\), contributing to
+    diversity through \(h_2\) and \(h_3\).
+  \end{itemize}
+\end{enumerate}
+
+Since \(u_1\) and \(u_2\) are affected by two \textbf{independent
+channel coefficients} each, the effective \textbf{time diversity order}
+is:
+
+\(\text{Time Diversity Order} = \min(\text{number of independent fades per symbol}) = \boxed{2}.\)
+
+\subparagraph{Justification}\label{justification}
+
+The system achieves a time diversity order of 2 because each transmitted
+symbol \(u_1\) and \(u_2\) is observed across two independently faded
+channels (\(h_1, h_2\) for \(u_1\); \(h_2, h_3\) for \(u_2\)). The third
+symbol \(u_3\) does not contribute additional diversity as it is only
+affected by \(h_3\).
+
+    \(\color{orange} \large \textbf{4)}\) (1 point). In a SISO case, what is
+the degrees of freedom (DOF) if we have a time-diversity code (spanning
+three channel uses) of the form
+\(\mathcal{X} = {[u_1 + u_2 \quad u_1 + u\_3 \quad u_2 + u_3]}\) where
+the \(u_1,u_2,u_3,u_4\) are independent 16-PAM elements?
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subparagraph{\texorpdfstring{\textbf{Step 1: Code
+Setup}}{Step 1: Code Setup}}\label{step-1-code-setup}
+
+The time-diversity code is:
+
+\(\mathcal{X} = [u_1 + u_2, \quad u_1 + u_3, \quad u_2 + u_3]\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(u_1, u_2, u_3, u_4\) are \textbf{independent complex numbers} from
+  \textbf{16-PAM}, meaning each has a \textbf{real} and
+  \textbf{imaginary} part.
+\item
+  Since we are now counting \textbf{only the real part}, each complex
+  symbol contributes \textbf{1 real degree of freedom}.
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{Step 2: Apply the
+Formula}}{Step 2: Apply the Formula}}\label{step-2-apply-the-formula}
+
+The formula is:
+
+\(\text{DOF} = \min\left( \frac{\text{\# of real symbols}}{T}, n_t \right)\)
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\# of real symbols}: There are \textbf{3 complex symbols},
+  each contributing \textbf{1 real part}. So, the number of real symbols
+  is \textbf{3}.
+\item
+  \textbf{\(T\)}: Number of channel uses = 3
+\item
+  \textbf{\(n_t\)}: Number of transmit antennas = 1 (SISO)
+\end{itemize}
+
+Calculate:
+
+\(\text{DOF} = \min\left( \frac{3}{3}, 1 \right) = \min(1, 1) = 1\)
+
+\subparagraph{\texorpdfstring{\textbf{Step 3: Adjust DOF for Real Parts
+Only}}{Step 3: Adjust DOF for Real Parts Only}}\label{step-3-adjust-dof-for-real-parts-only}
+
+Since we are counting only the \textbf{real parts}, the effective real
+DOF per channel use is:
+
+\(\text{Real DOF per channel use} = \frac{1}{2} \, \text{(since each complex DOF is split between real and imaginary parts)}\)
+
+\subparagraph{\texorpdfstring{\textbf{Final
+Answer:}}{Final Answer:}}\label{final-answer}
+
+The \textbf{real degrees of freedom (DOF)} per channel use in this
+time-diversity SISO code is:
+
+\(\boxed{\frac{1}{2} \, \text{real DOF per channel use}}\)
+
+    \(\color{orange} \large \textbf{5)}\) (1 point). For the case of time
+diversity in the SISO (quasi-static) fading channel, what is the
+advantage and the disadvantage of the repetition code, compared to
+uncoded transmission.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Advantage}: Repetition code improves reliability by providing
+  diversity gain, reducing the error probability in fading channels.\\
+\item
+  \textbf{Disadvantage}: It reduces spectral efficiency by lowering the
+  transmission rate due to redundant transmissions.
+\end{itemize}
+
+    \(\color{orange} \large \textbf{6)}\) (1 point). In a SISO case, what is
+the DOF and the rate (in bpcu), of the following time-diversity code
+(three channel uses) that takes the form
+\(\mathcal{X}= {[u_1 + u_4 \quad u_2 \quad u_1 + u_2 + u_3]}\) where the
+\(u_1,u_2,u_3,u_4\) are independent 64-QAM elements?
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+To analyze the \textbf{Degrees of Freedom (DOF)} and \textbf{rate} for
+the given time-diversity code:
+
+\subparagraph{Code Representation}\label{code-representation}
+
+The transmitted codeword over three channel uses is:
+
+\(X = \begin{bmatrix} u_1 + u_4 & u_2 & u_1 + u_2 + u_3 \end{bmatrix},\)
+
+where \(u_1, u_2, u_3, u_4\) are independent symbols from a 64-QAM
+constellation.
+
+\subparagraph{\texorpdfstring{1. \textbf{Degrees of Freedom
+(DOF):}}{1. Degrees of Freedom (DOF):}}\label{degrees-of-freedom-dof}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{DOF} corresponds to the number of \textbf{independent
+  information symbols} transmitted across the given channel uses.
+\item
+  Here, \(u_1, u_2, u_3, u_4\) are \textbf{independent symbols}, so
+  there are \textbf{4 independent symbols} transmitted over \textbf{3
+  channel uses}.
+\end{itemize}
+
+\(\text{DOF} = \frac{\text{Number of Independent Symbols}}{\text{Number of Channel Uses}} = \boxed{\frac{4}{3}}.\)
+
+\subparagraph{\texorpdfstring{2. \textbf{Rate (in
+bpcu):}}{2. Rate (in bpcu):}}\label{rate-in-bpcu}
+
+\begin{itemize}
+\tightlist
+\item
+  Each symbol is from a 64-QAM constellation, which carries
+  \(\log_2(64) = 6\) bits per symbol.
+\item
+  Since 4 symbols are transmitted over 3 channel uses, the rate \(R\)
+  is:
+\end{itemize}
+
+\(R = \frac{\text{Total Bits Transmitted}}{\text{Number of Channel Uses}} = \frac{4}{3}  \cdot 6 = \boxed{ 8 \, \text{bpcu}}.\)
+
+When applying:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\(n_t\)}: Number of transmit antennas = 1 (SISO)
+\end{itemize}
+
+\(\text{DOF} = \min\left( \frac{\text{Number of Independent Symbols}}{\text{Number of Channel Uses}}, n_t \right) = \min\left( \frac{4}{3}, 1 \right)\)
+the answer is \(\boxed{1}\)
+
+    \(\color{orange} \large \textbf{7)}\) (1 point). Imagine a SISO channel
+model with correlated fading, where the first fading coefficient (first
+transmission slot) is \(h_1 = h_1^\prime \times h_2^\prime\), and the
+second fading coefficient (second transmission slot) is
+\(h_2 = h_2^\prime\), where
+\(h_1^\prime, h_2^\prime \sim i.i.d \; \mathbb{C}\mathcal{N}(0,1)\).
+What is the maximum diversity we can achieve here?
+
+    \subparagraph{Maximum Diversity:}\label{maximum-diversity}
+
+\begin{itemize}
+\tightlist
+\item
+  Fading coefficients: \(h_1 = h_1' \cdot h_2'\) and \(h_2 = h_2'\).
+\item
+  Independent components: \(h_1'\) and \(h_2'\)
+  (\(\mathbb{C}\mathcal{N}(0,1)\), i.i.d.).
+\item
+  \textbf{Diversity order} = Number of independent fading coefficients =
+  \(\boxed{2}\).
+\end{itemize}
+
+\subparagraph{Note:}\label{note}
+
+\begin{itemize}
+\tightlist
+\item
+  If \(h_2'\) is bad everything is bad
+\end{itemize}
+
+    \(\color{orange} \large \textbf{8)}\) (1 point). Describe the steps of
+converting a binary vector detection problem over a time diversity
+fading channel, into a scalar detection problem. Imagine that you are
+sending BPSK symbols using a repetition code, and consider
+\(\mathbb{C}\mathcal{N}(0,N_0)\) noise.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subparagraph{\texorpdfstring{\textbf{Steps to Convert to Real Scalar
+Detection}}{Steps to Convert to Real Scalar Detection}}\label{steps-to-convert-to-real-scalar-detection}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Received signal model}:\\
+  \(y_i = h_i x + n_i, \quad n_i \sim \mathbb{C}\mathcal{N}(0, N_0)\)
+\item
+  \textbf{Combine the signals} using maximum ratio combining (MRC):\\
+  \(y_{\text{combined}} = \sum_{i=1}^{T} h_i^* y_i = \sum_{i=1}^{T} |h_i|^2 x + \sum_{i=1}^{T} h_i^* n_i\)
+\item
+  \textbf{Take the real part}:\\
+  \(\tilde{y} = \text{Re}(y_{\text{combined}}) = \tilde{h} x + \tilde{n}, \quad \tilde{n} \sim \mathcal{N}(0, N_0 \tilde{h})\)
+\item
+  \textbf{Decision rule}:\\
+  \(\boxed{\hat{x} = \begin{cases} +1, & \text{if } \tilde{y} > 0 \\ -1, & \text{if } \tilde{y} < 0 \end{cases}}\)
+\end{enumerate}
+
+This reduces the vector detection problem to \textbf{real scalar
+detection}.
+
+    \(\color{orange} \large \textbf{9)}\) (1 point). Consider a deep-space
+communications scenario, where the received SNR is equal to 20dB. If you
+assume low rate communications, what do you expect the probability of
+error to be?
+
+    \subparagraph{\texorpdfstring{\textbf{Step 1: Common Error Probability
+Expressions}}{Step 1: Common Error Probability Expressions}}\label{step-1-common-error-probability-expressions}
+
+In certain cases, especially for large SNR in low-rate communication
+systems, error probability takes the form of:
+
+\(P_e \approx e^{-\gamma \cdot \text{SNR}}\)
+
+Here: - \(\gamma\) depends on the modulation scheme and coding
+structure. - This approximation is typical for systems with
+\textbf{diversity}, \textbf{strong coding}, or under certain
+approximations (e.g., union bounds for coded error probabilities).
+
+\subparagraph{\texorpdfstring{\textbf{Step 2: When Does
+\(e^{-\text{SNR}}\)
+Apply?}}{Step 2: When Does e\^{}\{-\textbackslash text\{SNR\}\} Apply?}}\label{step-2-when-does-e-textsnr-apply}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Coded Systems}:\\
+  For strong error-correcting codes, the probability of error often
+  decreases exponentially with SNR:
+\end{enumerate}
+
+\(P_e \approx e^{-\text{coding gain} \cdot \text{SNR}}\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Uncoded BPSK in AWGN}:\\
+  The \textbf{bit error probability} for uncoded BPSK in AWGN is:
+  \(P_b = Q\left(\sqrt{2 \cdot \text{SNR}}\right)\)
+
+  For large SNR, using
+  \(Q(x) \approx \frac{1}{\sqrt{2\pi} x} e^{-\frac{x^2}{2}}\):
+  \(P_b \approx \frac{1}{\sqrt{2\pi} \cdot \sqrt{2 \cdot \text{SNR}}} \, e^{-\text{SNR}}\)
+\end{enumerate}
+
+\subparagraph{\texorpdfstring{\textbf{Step 3: Deep-Space
+Scenario}}{Step 3: Deep-Space Scenario}}\label{step-3-deep-space-scenario}
+
+In deep-space communications with \textbf{low-rate transmission},
+\textbf{coding} and \textbf{interleaving} are critical for reliability.
+In such scenarios, error probability can behave as:
+\(P_e \approx e^{-\text{SNR}}\)
+
+This results from: 1. \textbf{Effective coding gain}, which leads to
+rapid error decay. 2. \textbf{Low-rate transmissions} (few bits per
+channel use), allowing strong robustness against noise.
+
+\subparagraph{\texorpdfstring{\textbf{Step 4:
+Application}}{Step 4: Application}}\label{step-4-application}
+
+Given \textbf{SNR = 20 dB} (or \(\text{SNR} = 100\) in linear scale),
+if:
+
+\begin{itemize}
+\item
+  \textbf{SNR in Linear Scale}: Convert \(20 \, \text{dB}\) to linear
+  scale:
+  \(\boxed{\text{SNR}_{\text{linear}} = 10^{\frac{\text{SNR}_{\text{dB}}}{10}} = 10^{\frac{20}{10}} = 100}.\)
+\item
+  The \textbf{probability of error} is extremely small:
+  \(\boxed{P_e \approx e^{-\text{SNR}} = e^{-100} \approx 3.72 \times 10^{-44}}\)
+\end{itemize}
+
+This is consistent with the extremely low error probabilities observed
+in such scenarios.
+
+\subparagraph{\texorpdfstring{\textbf{Final
+Summary:}}{Final Summary:}}\label{final-summary}
+
+\begin{itemize}
+\tightlist
+\item
+  In deep-space communication with low-rate coding, the error
+  probability often follows an \textbf{exponential decay} form:
+  \(P_e \approx e^{-\text{SNR}}\)
+\item
+  For \textbf{SNR = 20 dB (100 linear)}, \(P_e \approx e^{-100}\),
+  giving an extremely small error probability, which aligns with robust,
+  low-error communications in space missions.
+\item
+  In deep-space communication with high SNR and low rate, errors are
+  nearly negligible.
+\end{itemize}
+
+    \(\color{orange} \large \textbf{10)}\) (1 point). What is the
+approximate coherence time \(T_c\) in a typical urban wireless network
+if you are driving approximately 20 kilometers per hour?
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+To estimate the \textbf{coherence time} \(T_c\) in a typical urban
+wireless network, we use the following formula:
+\(T_c \approx \frac{1}{f_d},\) where \(f_d\) is the \textbf{Doppler
+spread} given by \(f_d = \frac{v}{\lambda} = \frac{v \cdot f_c}{c}.\)
+
+\subparagraph{\texorpdfstring{\textbf{1. Given
+Parameters}:}{1. Given Parameters:}}\label{given-parameters}
+
+\begin{itemize}
+\tightlist
+\item
+  Speed:
+  \(v = 20 \, \text{km/h} = \frac{20 \times 1000}{3600} = 5.56 \, \text{m/s}\),
+\item
+  Carrier frequency:
+  \(f_c = 2 \, \text{GHz} = 2 \times 10^9 \, \text{Hz}\) (assumed
+  typical urban value),
+\item
+  Speed of light: \(c = 3 \times 10^8 \, \text{m/s}\).
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{2. Doppler
+Spread}:}{2. Doppler Spread:}}\label{doppler-spread}
+
+\(f_d = \frac{v \cdot f_c}{c} = \frac{5.56 \cdot 2 \times 10^9}{3 \times 10^8} = 37.1 \, \text{Hz}.\)
+
+\subparagraph{\texorpdfstring{\textbf{3. Coherence
+Time}:}{3. Coherence Time:}}\label{coherence-time}
+
+\(T_c \approx \frac{1}{f_d} = \frac{1}{37.1} \approx 0.027 \, \text{seconds} = 27 \, \text{ms}.\)
+
+The approximate coherence time is: \(\boxed{27 \, \text{ms}}.\)
+
+    \(\color{orange} \large \textbf{11)}\) (1 point). Consider communication
+over a SISO fading channel with a delay spread of \(T_d = 3 \mu s\) and
+a signal bandwidth of \(W = 1\) MHz. - Write all the received signals,
+if we only send \(x[0]\) and then we stop transmitting.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+To analyze this scenario, we need to consider the \textbf{SISO fading
+channel} with a \textbf{delay spread} \(T_d = 3 \, \mu s\) and a signal
+bandwidth \(W = 1 \, \text{MHz}\). The delay spread indicates the
+multipath environment, meaning the transmitted signal will arrive at the
+receiver through multiple delayed and scaled copies.
+
+\subparagraph{\texorpdfstring{\textbf{1. Transmitted
+Signal}:}{1. Transmitted Signal:}}\label{transmitted-signal}
+
+\begin{itemize}
+\tightlist
+\item
+  Only \(x[0]\) is transmitted, then the transmission stops. Thus:
+  \(x[n] = \begin{cases} x[0], & \text{if } n = 0, \\ 0, & \text{if } n \neq 0. \end{cases}\)
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{2. Received
+Signal}:}{2. Received Signal:}}\label{received-signal}
+
+The received signal is the convolution of the transmitted signal
+\(x[n]\) with the channel impulse response \(h(t)\):
+\(y[n] = h[n] \ast x[n].\)
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{channel impulse response} \(h(t)\) is a sum of \(L\)
+  multipath components:
+  \(h(t) = \sum_{l=0}^{L-1} h_l \delta(t - \tau_l),\) where:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(h_l\): Fading coefficient for the \(l\)-th path
+    (\(h_l \sim \mathcal{CN}(0, 1)\)),
+  \item
+    \(\tau_l\): Delay of the \(l\)-th path (\(0 \leq \tau_l \leq T_d\)).
+  \end{itemize}
+\item
+  With \(T_d = 3 \, \mu s\), the maximum delay is \(3 \, \mu s\),
+  corresponding to
+  \(L \approx W \cdot T_d = 1 \, \text{MHz} \cdot 3 \, \mu s = \boxed{ 3 }\)
+  significant paths.
+\end{itemize}
+
+\subparagraph{\texorpdfstring{\textbf{3. Writing the Received
+Signals}:}{3. Writing the Received Signals:}}\label{writing-the-received-signals}
+
+For \(x[0]\) transmitted: - The received signal \(y[n]\) consists of
+\(L\) delayed copies of \(x[0]\), weighted by the fading coefficients
+\(h_l\): \(y[0] = h_0 x[0],\) \(y[1] = h_1 x[0],\) \(y[2] = h_2 x[0].\)
+- For \(n > 2\), no further contributions occur, as \(\tau_l \leq T_d\).
+
+Thus:
+\(y[n] = \boxed{ \begin{cases} h_0 x[0], & n = 0, \\ h_1 x[0], & n = 1, \\ h_2 x[0], & n = 2, \\ 0, & n > 2. \end{cases}}\)
+
+\subparagraph{\texorpdfstring{\textbf{Final
+Answer}:}{Final Answer:}}\label{final-answer}
+
+The received signals are:
+\(y[0] = h_0 x[0], \quad y[1] = h_1 x[0], \quad y[2] = h_2 x[0], \quad y[n] = 0 \, \text{for } n > 2.\)
+
+    \(\color{orange} \large \textbf{12)}\) \textbf{\emph{(2 points)}}. What
+is the optimal diversity order over a 2×1 MISO channel
+\(h = [h_1 \; h_2], h_i \sim i.i.d \; \mathbb{C}\mathcal{N}(0,1)\)? - In
+the same channel as above (again with no time diversity), consider a
+space time code whose matrices take the form \[\begin{bmatrix}
+x_0 & x_1 \\
+x_1 & x_0
+\end{bmatrix}
+\]where the\(x_i\) are drawn independently from a QAM constellation.
+Will this code achieve optimal diversity order? (argue why or why not) -
+What is the diversity order achieved by the Alamouti code, over this
+\(2 \times 1\) MISO channel? (again, you can just argue in words)
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subparagraph{\texorpdfstring{\textbf{1. Optimal Diversity Order in a
+\(2 \times 1\) MISO
+Channel}}{1. Optimal Diversity Order in a 2 \textbackslash times 1 MISO Channel}}\label{optimal-diversity-order-in-a-2-times-1-miso-channel}
+
+In a \(2 \times 1\) MISO channel, the \textbf{diversity order} is equal
+to the number of independent fading paths, which corresponds to the
+number of transmit antennas (\(N_t = 2\)) when there is 1 receive
+antenna.\\
+Thus, the \textbf{optimal diversity order} is: \(\boxed{2}.\)
+
+\subparagraph{\texorpdfstring{\textbf{2. Diversity Order of the Given
+Space-Time
+Code}}{2. Diversity Order of the Given Space-Time Code}}\label{diversity-order-of-the-given-space-time-code}
+
+The given code matrix is:
+\(\mathbf{X} = \begin{bmatrix} x_0 & x_1 \\ x_1 & x_0 \end{bmatrix},\)
+where \(x_0\) and \(x_1\) are independent QAM symbols.
+
+\textbf{Key Analysis}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Rank Criterion}: For a space-time code to achieve full
+  diversity, the difference between any two distinct code matrices
+  \(\mathbf{X}_1\) and \(\mathbf{X}_2\) must result in a matrix of full
+  rank.
+\item
+  For this code:
+  \(\Delta\mathbf{X} = \mathbf{X}_1 - \mathbf{X}_2 = \begin{bmatrix} x_{01} - x_{02} & x_{11} - x_{12} \\ x_{11} - x_{12} & x_{01} - x_{02} \end{bmatrix}.\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The rows of \(\Delta\mathbf{X}\) are \textbf{linearly dependent}
+    because the two rows are identical. This means \(\Delta\mathbf{X}\)
+    is \textbf{not full rank}.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}:
+
+This code does \textbf{not achieve the optimal diversity order}, as it
+does not satisfy the rank criterion for full diversity.
+
+\subparagraph{\texorpdfstring{\textbf{3. Diversity Order of the Alamouti
+Code}}{3. Diversity Order of the Alamouti Code}}\label{diversity-order-of-the-alamouti-code}
+
+The Alamouti code for a \(2 \times 1\) MISO channel is:
+\(\mathbf{X}_{\text{Alamouti}} = \begin{bmatrix} x_0 & -x_1^* \\ x_1 & x_0^* \end{bmatrix}.\)
+
+\textbf{Key Features}:
+
+\begin{itemize}
+\tightlist
+\item
+  The Alamouti code satisfies the \textbf{rank criterion}, ensuring that
+  \(\Delta\mathbf{X} = \mathbf{X}_1 - \mathbf{X}_2\) is always full rank
+  for distinct codewords \(\mathbf{X}_1\) and \(\mathbf{X}_2\).
+\item
+  Each transmitted symbol experiences the full diversity of the channel,
+  as it leverages both transmit antennas.
+\end{itemize}
+
+\textbf{Conclusion}:
+
+The Alamouti code achieves the \textbf{optimal diversity order of 2}
+over the \(2 \times 1\) MISO channel.
+
+\subparagraph{\texorpdfstring{\textbf{Final
+Answers}:}{Final Answers:}}\label{final-answers}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Optimal diversity order in \(2 \times 1\) MISO: \(\boxed{2}\).
+\item
+  Given space-time code: \textbf{Does not achieve optimal diversity
+  order} due to \(\boxed{\text{lack of full-rank}}\) property.
+\item
+  Alamouti code: \textbf{Achieves optimal diversity order of
+  \(\boxed{2}\)}.
+\end{enumerate}
+
+    \(\color{orange}\large\textbf{13)}\) \textbf{\emph{(EXTRA CREDIT: 2
+points)}}. Consider a setting where the transmit antenna array has
+length of 50 cm, the received antenna array has size 20cm, the
+transmission frequency is 1000 MHz, the signal bandwidth is 1 MHz, the
+channel coherence time is \(T_c = 21\) ms, and the coding duration is
+\(T_{coding} = 7\)ms. - How much diversity can you get, in total?
+
+    \subparagraph{\texorpdfstring{\textbf{Explanation for selecting Space
+Diversity}}{Explanation for selecting Space Diversity}}\label{explanation-for-selecting-space-diversity}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Only Space Diversity is usable}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Time diversity}: Not applicable since
+    \(T_{coding} = 7 \, \text{ms}\) is much shorter than
+    \(T_c = 21 \, \text{ms}\), so the channel does not change
+    significantly.
+  \item
+    \textbf{Frequency diversity}: Not effective as the bandwidth (1 MHz)
+    is within the coherence bandwidth.
+  \end{itemize}
+\item
+  \textbf{Calculate Space Diversity}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Wavelength}: \(\lambda = 0.3 \, \text{m}\) (at 1000 MHz)
+  \item
+    \textbf{Antenna Spacing}:
+    \(d = \frac{\lambda}{2} = 0.15 \, \text{m}\)
+  \item
+    \textbf{Transmit Array}:\\
+    \(n_t = \frac{50 \, \text{cm}}{15 \, \text{cm}} \approx 4\)
+  \item
+    \textbf{Receive Array}:\\
+    \(n_r = \frac{20 \, \text{cm}}{15 \, \text{cm}} \approx 3\)
+  \end{itemize}
+\item
+  \textbf{Total Space Diversity}:
+  \(\text{Space diversity} = n_t \times n_r = 4 \times 3 = 12\)
+\end{enumerate}
+
+\subparagraph{\texorpdfstring{\textbf{Final
+Answer}:}{Final Answer:}}\label{final-answer}
+
+\(\boxed{\text{diversity} = 12}\)
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}

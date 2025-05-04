@@ -1,0 +1,1075 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Keep aspect ratio if custom image width or height is specified
+    \setkeys{Gin}{keepaspectratio}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{lecture01}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \section{📜 Lecture 1}\label{lecture-1}
+
+Small-scale multipath fading is more relevant to the design of reliable
+and efficient communication systems - The focus of the book (Fundamental
+of WIRELESS COMMUNICATION)
+
+    \subsection{❍ Communication (Simplistic
+View)}\label{communication-simplistic-view}
+
+Transmitted sinusoid: \(x(t) = \cos(2 \pi \mathcal{f} t)\) where : -
+\(\mathcal{f}\) is frequency \(\approx 1 \to 4\) Ghz - \(t\) is time
+
+    \begin{equation}
+\text{Rx: } E(f, t, r, \theta, \psi) = \frac{1}{r} \cdot {\color{yellow}\alpha}_s(\theta, \psi, f) \cdot \cos\left( 2 \pi f \left( t - {\color{orange}\frac{r}{c}} \right) \right)
+\end{equation}
+
+\begin{itemize}
+\tightlist
+\item
+  \({\color{yellow}\alpha}\): antenna losses
+\item
+  \({\color{orange}\frac{r}{c}}\) : delay due to signal
+\end{itemize}
+
+\textbf{Intuition why \(E \propto \frac{1}{r}\):}
+
+\begin{itemize}
+\tightlist
+\item
+  Tx in 3-D space.
+\item
+  Power preserved in surface of sphere: (radius \(r\), center is
+  antenna).
+\item
+  Fixed \(\frac{\text{Total Power}}{\text{ Area }}\) → Rx power
+  \(\propto \frac{1}{4 \pi r^2}\) → \(\propto \frac{1}{r^2}\).
+\end{itemize}
+
+    \subsubsection{❍ Consider Movement}\label{consider-movement}
+
+\begin{align}
+E(f, t, r(t)) &= \frac{\alpha_s}{r(t)} \cdot \cos 2 \pi f \left( t - \frac{r(t)}{c} \right) \qquad \text{like before: } r \to r(t) \\
+&= \frac{\alpha_s}{r_0 + v \cdot t} \cdot \cos 2 \pi f \left( t - \frac{r_0}{c} - \frac{v \cdot t}{c} \right)\\
+&= \frac{\alpha_s}{r_0 + v \cdot t} \cdot \cos 2 \pi f \left[t \cdot \left( 1 - \frac{v}{c} \right) - \frac{r_0}{c} \right]
+\end{align}
+
+\begin{itemize}
+\item
+  Effective frequency change
+  \(f t \to f \cdot \left( 1 - \frac{v}{c} \right) \cdot t\) :
+  \(f \to f \cdot \left( 1 - \frac{v}{c} \right)\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    frequency reduction
+    \(f t \to f \cdot \left( 1 - \frac{v}{c} \right) \cdot t\)
+  \item
+    \textbf{Doppler shift}: \(D = -f \frac{v}{c}\)
+  \end{itemize}
+\item
+  \[
+  E(f, t, r(t)) = {\color{yellow}\frac{\alpha_s}{r_0 + v \cdot t}} \cdot \cos 2 \pi f \left( t \cdot \left( 1 - \frac{v}{c} \right) - \frac{r_0}{c} \right)
+  \]
+
+  \textbf{Note}: \({\color{yellow}\frac{\alpha_s}{r_0 + v \cdot t}}\)
+  ``Not LTI now.''
+\end{itemize}
+
+    \subsubsection{❍ Fixed Tx, Fixed Rx, Perfectly Reflecting
+Wall}\label{fixed-tx-fixed-rx-perfectly-reflecting-wall}
+
+\textbf{Use method of ``ray tracing'': consider dominant (main) paths.}
+
+\[
+E_r(f, t) = \frac{\alpha}{r} \cos 2 \pi f \left( t - \frac{r}{c} \right) - \frac{\alpha}{2d - r} \cos 2 \pi f \left( t - \frac{2d - r}{c} \right)
+\]
+
+\$ \qquad \qquad \qquad r \$ is \textbf{distance 1}, \$ \qquad 2d - r \$
+= \textbf{distance 2}.
+
+\textbf{Superposition (addition of two sinusoids, with different
+phases):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\(\color{red}\text{Possible effect of cancelling out}\)}.
+\end{itemize}
+
+\textbf{Phase difference}: \$ \Delta \phi = \phi\_2 + \{\color{orange}
+\pi \} - \phi\_1 \$
+
+\textbf{Interpretation}: - ( \textbf{\({\color{orange} \pi }\) phase
+shift}: in the electric field of an EM wave when reflected from an
+optically denser medium. ) - ( This causes \textbf{essentially
+cancelling} of the signals close to the wall. )
+
+\[
+\Delta \phi = 2 \pi f \frac{2d - r}{c} + \pi - 2 \pi f \frac{r}{c}
+\]
+
+    \subsubsection{\texorpdfstring{❍ \textbf{Coherence
+Bandwidth:}}{❍ Coherence Bandwidth:}}\label{coherence-bandwidth}
+
+Change in frequency \$ f \$ such that the channel (i.e.~magnitude of
+received signal) remains relatively the same.
+
+\begin{align}
+\Delta \phi &= \frac{4 \pi f }{c} (d - r) + \pi \qquad \to \text{change} f \text{ so that phase shift changes} \approx \frac{\pi}{2} \\
+&= \frac{4 \pi f}{c} ( d - r ) \qquad \text{change by } \approx \frac{\pi}{2} \\
+&=2 \pi f \left( \frac{2d - r \; - r}{c} \right) \approx \frac{\pi}{2} \impliedby \text{rewrite to help us later.}
+\end{align}
+
+\textbf{Note}: \(\frac{2d - r}{c} - \frac{r}{c} \Rightarrow T_d\) is
+called the \textbf{delay spread}, (\textbf{difference in delay} of the
+paths).
+
+\(\qquad \Rightarrow 2 \pi f T_d \approx \frac{\pi}{2}  \qquad \qquad  \implies f \approx \frac{1}{4 T_d} \Rightarrow W_c = \frac{1}{4 T_d}\)
+
+\textbf{(note:} if set
+\(2\pi f \frac{2d-r-r}{c} \approx {\color{green}\pi } \text{[substantial phase shift]} \Rightarrow W_c = \frac{1}{2T_d}\)\\
+- the constant factor does not really matter).
+\(( \frac{\pi}{2} \to \frac{1}{4T_d} \text{ or } \pi \to \frac{1}{2T_d}).\)
+
+\textbf{In fact,
+\href{https://en.wikipedia.org/wiki/Coherence_bandwidth}{wiki}
+\(W_c \approx \frac{2 \pi {T_d} \quad B_c \approx \frac{1}{T_d}\).}
+
+    \subsubsection{❍ Coherence Distance: same
+scenario}\label{coherence-distance-same-scenario}
+
+\$ \Delta \phi \approx 2\pi f \left( \frac{2d - r}{c} -
+\frac{r}{c}\right) = \frac{2\pi f}{c} (2d - 2r) = \frac{4\pi f}{c} (d -
+r) \$
+
+Change in \(r\) prop to change in \$ d - r \$
+
+What change in \$ r \$ will result in phase shift of \$ \frac{\pi}{2}
+\$.
+
+\$ \frac{4\pi f}{c} \cdot x \approx \frac{\pi}{2} \Rightarrow x
+\approx \frac{\frac{\pi}{2}}{4\pi \frac{f}{c}} = \frac{c}{f . 8}
+\approx \frac{\lambda}{8}. \$
+
+\$ \Rightarrow \text{coherence distance } \Delta x\_c
+\approx \frac{\lambda}{8}. \$
+
+(If I set ``substantial phase shift'' \$
+\Delta \phi \approx \frac{4\pi f}{c} \overbrace{(d - r)}\^{}\{x\}
+\approx \pi \$)
+
+\$ \Rightarrow x = \frac{c}{f} \cdot \frac{1}{4} = \frac{\lambda}{4} =
+\Delta x\_c \$
+
+\$ \Delta x\_c \approx \frac{\lambda}{8} \to \frac{\lambda}{4} ;
+(\text{depending on convention}). \$
+
+    \subsubsection{❍ Reflecting wall, moving
+Antenna}\label{reflecting-wall-moving-antenna}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Channel strength changes as you move through constructive \&
+  destructive interference (``multipath fading'').}
+\end{itemize}
+
+\$ \begin{align}
+    E_r(f, t) &= \frac{\alpha}{r_1(t)} \cdot \cos 2 \pi f \left[ t - \overbrace{\frac{r(t)}{c}}^{\text distance 1} \right] + \frac{\alpha}{r_2(t)} \cdot \cos \left[ 2 \pi f \left[ t - \frac{2d_1 - r(t)}{c} \right] + \pi \right] \\
+    &= \frac{\alpha}{r_0 + v \cdot t} \cdot \cos  2 \pi f \left[ t - \frac{v \cdot t}{c} - \underbrace{\frac{r_0}{c}}_{\phi 1} \right] + \frac{\alpha}{2d - r_0 - v \cdot t} \cdot \cos \left[ 2 \pi f \left[ t - \frac{2d - r_0 - v \cdot t}{c} \right] + \overbrace{\pi}^{\text{because reflection}} \right] \\
+    &= \frac{\alpha}{r_0 + v \cdot t} \cdot \cos 2 \pi f \left[ t \left( 1 - \frac{v}{c} \right) - \underbrace{\frac{r_0}{c}}_{\phi 1} \right] \overbrace{-}^{(\pi \text{ taken here})} \frac{\alpha}{2d - r_0 - v \cdot t} \cdot \cos 2 \pi f \left[ t \left( 1 + \frac{v}{c} \right) - \underbrace{\frac{2d - r_0}{c}}_{\phi 2} \right]
+\end{align} \$
+
+    \textbf{Now assume (for simplicity) that we are close to the wall}\\
+\$ \Rightarrow \qquad \qquad \qquad \qquad \Rightarrow r(t) \approx d
+\quad \Rightarrow \quad r(t) \approx 2d - r(t) \approx d \$
+
+\$ E\_r(f, t) \approx \frac{\alpha}{r(t)}
+\Big[ \cos \underbrace{2 \pi f \left[ t \left(1 - \frac{v}{c} \right) - \phi_1 \right]}_{A} - \cos \underbrace{ 2 \pi f \left[ t \left(1 + \frac{v}{c} \right) - \phi_2 \right]}_{B} \Big]\$
+
+\textbf{Recall} \(\qquad
+\cos A - \cos B = -2 \sin \left( \frac{A + B}{2} \right) \sin \left( \frac{A - B}{2} \right)\)
+
+\$ \frac{A + B}{2} = 2 \pi f
+\left[ \frac{1}{2} \left[ t \left( 1 - \frac{v}{c} \right) - \frac{r_0}{c} + t \left( 1 + \frac{v}{c} \right) - \frac{2d - r_0}{c} \right] \right{]}
+= 2 \pi f \left[ t - \frac{d}{c} \right]\$
+
+\$ \frac{A - B}{2} = 2 \pi f
+\left[ \frac{1}{2} \left[ \cancel{t} - \frac{t \cdot v}{c} - \frac{r_0}{c} - \cancel{t} - \frac{t \cdot v}{c} + \frac{2d - r_0}{c} \right] \right{]}
+= 2 \pi f \left[ - \frac{t \cdot v}{c} + \frac{d - r_0}{c} \right]\$
+
+\$ E\_r(f, t) = \frac{2 \alpha}{d}
+\cdot \underbrace{ \sin \left[ 2 \pi f \left(\frac{t \cdot v}{c} - \frac{d - r_0}{c} \right) \right] }\emph{\{\text{very slow }
+( \text{freq } f \frac{v}{c})\}
+\cdot \underbrace{ \sin 2 \pi f \left[ t - \frac{d}{c} \right]}}\{\text{very fast (freq }f)\}
+\$
+
+    \$ E\_r(f, t) = \frac{2 \alpha}{d}
+\cdot \sin \left[ 2 \pi f \left(\frac{t \cdot v}{c} - \frac{d - r_0}{c} \right) \right] \cdot \sin 2
+\pi f \left[ t - \frac{d}{c} \right]\$
+
+\$ f' = f \cdot \frac{v}{c} = \frac{1}{T'} \qquad \qquad T' =
+\frac{1}{f'} \$
+
+\textbf{- period of slow sinusoid,}\\
+\textbf{- period of major ups \& downs}
+
+\$ \Rightarrow \text{Coherence period: } \frac{T'}{4} = \frac{1}{4f'} =
+\frac{1}{4} \cdot \frac{c}{f \cdot v} = \frac{1}{4}
+\lambda \cdot \frac{1}{v}. \$ \textbf{(recall \$ c = f
+\cdot \lambda \$).}
+
+Another way to see: \textbf{coherence distance} \$
+\approx \frac{\lambda}{4} = \Delta x\_c \$ (Can call it distance because
+next to it we have \$ v \$.)
+
+\textbf{Generally note:} \$ \frac{\lambda}{4} \ll r \$. (In process, it
+will change many times.)
+
+    \textbf{Also write \$ \Delta x\_c \$ or \$ T\_c \$ in terms of Doppler
+Spread.}
+
+\textbf{Doppler Spread here:} \$ D\_s \triangleq D\_\{\text{max}\} -
+D\_\{\text{min}\} = f \frac{v}{c} - (-f \frac{v}{c}) = 2f \frac{v}{c} =
+D\_s. \$
+
+\$ T\_c = \frac{T'}{4} = \frac{1}{4} \frac{c}{f v} = \frac{1}{2}
+\frac{c}{2 f v} = \boxed{ \frac{1}{2 \cdot D_s} \approx T_c }. \$
+
+\$ v = \frac{ \Delta x_c }{ T_c } \qquad \Delta x\_c = T\_c \cdot v =
+\frac{v}{2 D_s}. \$
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+    \textbf{Example}: \$ v = 60 , \text{km/h}, , f = 1 , \text{GHz} ,
+(\text{typical freq}) \$.
+
+\$ v = \frac{60 \cdot 10^3 \text{ m}}{3600 \text{ s}} = \frac{50}{3} ,
+ms\^{}\{-1\} \Rightarrow D\_s \approx 2 \cdot f \cdot \frac{v}{c} =
+\frac{2 \cdot 10^9 \cdot 50}{3 \cdot 3 \cdot 10^8}
+\approx \frac{2.5 \cdot 100}{9} \approx 110 , \text{Hz}. \$
+
+\$ \Rightarrow T\_c \approx \frac{1}{2 D_s} = \frac{1}{2 \cdot 110} ,
+\text{s} \approx 5 , \text{ms}; , \Delta x\_c \approx v \cdot T\_c =
+\frac{50}{3} \cdot 5 \cdot 10\^{}\{-3\} \approx 75 , \text{cm}
+\approx \text{few cm}. \$
+
+    \subsection{❍ Input - Output Model}\label{input---output-model}
+
+    Consider many paths (many reflectors)
+
+~ ~ Difference paths \(i\) (many \ldots)
+
+\textbf{Input}\\
+\$ x(t) = \cos 2\pi f t \$
+
+\textbf{Recall our attenuation examples before:}
+
+\$ \boxed{
+y(t) = \sum_i a_i(f, t) \cdot x\big(t - \tau_i(f, t)\big)
+} \$
+
+\textbf{Propagation delays} \$ \tau\_i(f, t) \$: How long it takes for
+each path to travel from \$ t \to r \$.
+
+    \textbf{Path attenuations \$ a\_i(f, t) \$:}
+
+\begin{itemize}
+\tightlist
+\item
+  Note that \$ \tau\_i(f, t) \$ and \$ a\_i(f, t) \$ are functions of
+  both \$ f \$ and \$ t \$.\\
+\item
+  But recall :
+\end{itemize}
+
+\textbf{Bandwidth} is small compared to \$ f\_c = 1, \text{GHz} \$
+(central frequency).\\
+So all frequencies that we use are (in relative terms) very close to \$
+f\_c = 1 , \text{GHz} \$.\\
+(Bandwidth \$ \text{BW} \$ typically \$ 1 , \text{MHz} \$ or so.)
+
+\$ \Rightarrow f
+\in [0.999 \, \text{GHz} \rightarrow 1.001 \, \text{GHz} ] \approx 1 ,
+\text{GHz} \$
+
+\$ \Rightarrow\$ \textbf{We can nicely assume:} \$ \tau\_i \$ and \$
+a\_i \$ are independent of \$\color{orange}f \$.
+
+\textbf{Be careful}: Channel response is still a function of
+\$\color{orange}f \$. (Just like in previous examples.)
+
+\$ \Rightarrow\$ \$ \tau\_i(t), , a\_i(t) \$
+
+\$ \Rightarrow\$ \$ y(t) = \sum\_i a\_i(t) \cdot x(t - \tau\_i(t)) \$
+
+    \textbf{Example:} Perfectly reflecting wall with movement.
+
+\textbf{Recall:}
+
+\$ \begin{align}
+E_r(f, t) &= \frac{\alpha}{r_1(t)} \cos 2 \pi f \left(t - \tau_1(t)\right) + \frac{\alpha}{r_2(t)} \cos 2 \pi f \left(t - \tau_2(t) - \pi\right) \\
+&= {\color{yellow}\frac{\alpha}{r_1(t)}} \cos 2 \pi f \left(t - {\color{orange}\frac{v t + r_0}{c}}\right) + {\color{yellow}\frac{\alpha}{r_2(t)}} \cos 2 \pi f \left(t - {\color{orange}\frac{2d - r_0 - v t}{c}}\right).
+\end{align} \$
+
+Where: - \$ a\_1(t) = \{\color{yellow}\frac{\alpha}{r_1(t)}\} ,
+\tau\_1(t) = \{\color{orange}\frac{v t + r_0}{c}\} \$, - \$ a\_2(t) =
+\{\color{yellow}\frac{\alpha}{r_2(t)}\} , \tau\_2(t) =
+\{\color{orange}\frac{2d - r_0 - v t}{c}\} \$.
+
+\textbf{Recall:} We have accepted linearity.
+
+\$ y(t) = \int\_\{-\infty\}\^{}\{\infty\} h(t, \tau) \cdot x(t - \tau) ,
+d\tau \$
+
+\$ \implies \$ I/O relationship via convolution:\\
+\$\qquad \$ \$ y(t) = h(t, \tau) \ast x(t) \$: For \$ h(t, \tau) \$, a
+T.V. (time-variant) channel impulse response.
+
+\$ y(t) = \int\limits\_\{-\infty\}\^{}\{\infty\} h(t, \tau) \cdot x(t -
+\tau) , d\tau  \$
+
+\(\qquad \qquad \downarrow \quad\)\textbf{But also (from before):}
+
+\$ y(t) = \sum\_i a\_i(t) \cdot x(t - \tau\_i(t)) \$
+
+\textbf{Put two together:}\\
+\$ \implies \$ \(\boxed{
+h(t, \tau) = \sum\limits_{i}  a_i(t) \cdot \delta(\tau - \tau_i(t))
+}\)
+
+\textbf{Verify:}
+
+\$ \begin{align}
+y(t) &= \int\limits_{-\infty}^{\infty} h(t, \tau) \cdot x(t - \tau) \, d\tau = \int\limits_{-\infty}^{\infty} \sum_i a_i(t) \cdot \delta(\tau - \tau_i(t)) \cdot x(t - \tau) \, d\tau \\
+&= \sum\limits_{i} a_i(t) \underbrace{ \int\limits_{-\infty}^{\infty} \delta(\tau - \tau_i(t)) \cdot x(t - \tau) \, d\tau }_{x(t - \tau_i(t))}= \sum\limits_{i} a_i(t) \cdot x(t - \tau_i(t))
+\end{align} \$
+
+\$ \implies \$ \textbf{LTV impulse response of the channel:} \(\boxed{
+y(t) = h(t, \tau) \ast x(t)
+}\)
+
+    \$ x(t) \xrightarrow{\qquad } \underset{\hat{
+\begin{matrix}
+  | \\
+  \text{channel}
+\end{matrix}}
+}{\boxed{\qquad h(t, \tau) \qquad}} \xrightarrow{\qquad } y(t) \$ (we
+have seen)
+
+Our task now will be to extend the concept of this \textbf{``channel''}
+to include important processes of communication.
+
+Thus, let us sketch this process.
+
+    \subsubsection{\texorpdfstring{❍ \textbf{Communication process in a
+glimpse: from \$ m(t) \$ to \$ x(t)
+\$:}}{❍ Communication process in a glimpse: from \$ m(t) \$ to \$ x(t) \$:}}\label{communication-process-in-a-glimpse-from-mt-to-xt}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Message:} \texttt{"Meet\ me\ at\ 4pm"} → \$ m\_1 \$
+\end{enumerate}
+
+\$ \begin{align*}
+m_1 &= \, \underbrace{11}, \quad \underbrace{01}, \quad \underbrace{11}, \quad \underbrace{01}, \quad \underbrace{01} \qquad \qquad = b_1 \\
+b_1 &= (1 - i, \, -1 + i, \, 1 - i, \, -1 + i, \, 1 + i ) \qquad \qquad = [x[1]  x[2]  \ldots  x[5]] \qquad  \qquad  = \underline{x} \\
+\mathcal{Re}\{x\} &= [1, -1, 1, -1, 1] \qquad \qquad \qquad \qquad \qquad \mathcal{Im}\{x\} = [-1, 1, -1, 1]
+\end{align*} \$
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{this requires infinite bandwidth.} \(\qquad \qquad\)
+  \(\to \infty \, \text{BW}\) (because \(F T\) of \(exp\) is sync).
+\item
+  \$ \mathcal{Re}\{x{[}1{]}\} = 1 \$, \$ \mathcal{Re}\{x{[}2{]}\} = -1
+  \$
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{Solution:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Need to smooth signals.}
+  \item
+    \textbf{Modulate} with a sequence of smooth sync functions:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \(\underline{x} \, \ast \, \left\{ \text{sinc}\{w_t  -n\}\right\}_n\)
+      to give \$ x\_b(t) \$ that has finite bandwidth.
+    \item
+      \(P.A\) Convolution (Pulse Amplitude)
+    \item
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  High Frequency Modulation\\
+  Low frequency signals suffer from rapid attenuation\\
+  (easily absorbed by walls, etc.).
+\end{itemize}
+
+\$ x\_b(t) \xrightarrow{\qquad \qquad } \underset{\hat{
+\begin{matrix}
+  \approx & | \\
+  \cos & 
+\end{matrix}2\pi f_c t}
+}{\bigodot} \xrightarrow{\qquad } \boxed{\qquad x(t) \qquad } \$
+\(\quad f_c \approx 1 \to 2 \text{GHz}\)
+
+\begin{itemize}
+\tightlist
+\item
+  (Diagram of modulation process with \$ x\_b(t) \$ and \$ x\_c(t) \$)\\
+  → High Frequency spectrum \$ f\_c \pm w \$.
+\end{itemize}
+
+→ Then demodulate (scaled by \$ \approx \cos 2 \pi f\_c t \$).\\
+→ Then sample.
+
+(Sample points above in the waveform):
+\(1.3 + 2.5i, -1.9 + 0.7i \cdots\)
+
+    \subsubsection{❍ Establishing relationship between Baseband input \&
+output}\label{establishing-relationship-between-baseband-input-output}
+
+\[
+x_b(t) \xrightarrow{\qquad } 
+\underset{\hat{
+\begin{matrix}
+  & | \\
+  \cos \\
+  \sin
+\end{matrix} 2\pi f_c t}
+}{\bigotimes}
+\xrightarrow{\quad x(t) \quad }  \boxed{\qquad h(t, \tau) \qquad } \xrightarrow{ \quad y(t) \quad } 
+\underset{\hat{
+\begin{matrix}
+  & | \\
+  \cos \\
+  \sin
+\end{matrix} 2\pi f_c t}
+}{\bigotimes}
+\xrightarrow{\qquad } y(t)
+\]
+
+\$ x\_b(t) \xrightarrow{\qquad \text{F.T} \qquad \qquad} X\_b(f)
+\xrightarrow{\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad}
+X(f) \$
+
+\textbf{In the time domain:}
+
+\$ \qquad \qquad x(t) = \Re \left\{ x\_b(t) \cdot e\^{}\{j2\pi f\_c t\}
+\right\} \$
+
+Similarly: \$ ; y(t) = \Re \left\{ y\_b(t) \cdot e\^{}\{j2\pi f\_c t\}
+\right\} \$
+
+\textbf{From reverse action of demodulation:}
+
+\$ Y(f) \quad \text{(plots on the left: symmetric about } -f\_c
+\text{ and } f\_c\text{)} \quad \to \quad Y\_b(f)
+\quad \text{(filtered centered at } f\_c\text{)}. \$
+
+    \textbf{In practice: how is this achieved?}
+
+\$ \begin{align}
+x(t) &= \Re \{ \underbrace{\bar{x}_b(t)}_{\text{complex}} \cdot e^{j 2 \pi f_c t} \} \\
+\Rightarrow \text{write} \quad \bar{x}_b(t) &= x_I(t) + j x_Q(t) \quad \& \quad \text{recall} \quad e^{j 2 \pi f_c t} = \cos 2 \pi f_c t + j \sin 2 \pi f_c t \\
+\Rightarrow \qquad \quad \; \; x(t) &= \Re \{ x_I(t) (\cos 2 \pi f_c t + j \sin 2 \pi f_c t) + j x_Q(t) (\cos 2 \pi f_c t + j \sin 2 \pi f_c t) \} \\
+\Rightarrow \qquad \qquad \qquad \! & \boxed{x(t) = x_I(t) \cos 2 \pi f_c t - x_Q(t) \sin 2 \pi f_c t} \qquad \text{(xxx)}
+\end{align} \$
+
+\textbf{Recap}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+From the action of modulation & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\$ \boxed{
+\begin{align}
+\Rightarrow \text{For our signals. } & \quad \bar{x}_b(t) \qquad \& \qquad x(t) \\
+\Rightarrow \qquad \qquad \quad x(t) &= \Re \{ \bar{x}_b(t) \cdot e^{j 2 \pi f_c t} \} \\
+\Rightarrow \qquad \qquad \quad x(t) &= x_I(t) \cos 2 \pi f_c t - x_Q(t) \sin 2 \pi f_c t
+\end{align}} \$ \textbar{} \textbar{}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+From the reverse action of demodulation & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\$ \boxed{
+\Rightarrow \text{Similarly. } \quad \; y(t) = \Re \left\{ y_b(t) \cdot e^{j2\pi f_c t} \right\}
+} \$ \textbar{} \textbar{}
+
+    Now ready to establish relationship
+
+\$ x\_b(t) \xrightarrow{\qquad } \{\boxed{\qquad h_b(t, \tau) \qquad}\}
+\xrightarrow{\qquad } y\_b(t) \$
+
+\subsubsection{Recall:}\label{recall}
+
+\$ \begin{align}
+y(t) &= \sum\limits_i a_i(t) \cdot x(t - \tau_i(t)) \qquad \qquad a_i(t) \qquad \text{path attenuation} \\
+& \qquad \qquad \qquad \qquad  \qquad \qquad \qquad \quad \tau_i(t) \qquad \text{"} \qquad  \text{delay} \\
+&= \Re \{ y_b(t) \cdot e^{j2\pi f_c t} \}   \qquad \quad \qquad \quad x(t) = \Re \{ x_b(t) \cdot e^{j2\pi f_c t} \}
+\end{align} \$
+
+\$ \Rightarrow \Re \{ y\_b(t) \cdot \not{e^{j2\pi f_c t}} \} =
+\sum\limits\_i a\_i(t) \cdot \Re \Big\{ x\_b(t - \tau\_i(t))
+\cdot e\^{}\{j2\pi f\_c(t - \tau\_i(t))\} \Big\} = \Re \left\{
+\sum\limits\emph{i \underbrace{a_i(t)}}\{\text{real}\} \cdot x\_b(t -
+\tau\_i(t)) \cdot \not{e}\^{}\{j2\pi f\_c t\} \cdot e\^{}\{-j2\pi f\_c
+\tau\_i(t)\} \right\} \$
+
+\$ \Rightarrow \Re \{ y\_b(t) \} = \Re \left\{ \sum\limits\_i a\_i(t)
+\cdot x\_b(t - \tau\_i(t)) \cdot e\^{}\{-j2\pi f\_c \tau\_i(t)\}
+\right\} \quad \text{(easy exercise to show)} \$
+
+Similarly,
+
+\$ \Im \{ y\_b(t) \cdot \not{e^{j2\pi f_c t}} \} = \Im \left\{
+\sum\limits\_i a\_i(t) \cdot x\_b(t - \tau\_i(t))
+\cdot \not{e^{j2\pi f_c t}} \cdot e\^{}\{-j2\pi f\_c \tau\_i(t)\}
+\right\} \$
+
+\$
+\boxed{ y_b(t) = \sum_i a_i(t) \cdot e^{-j2\pi f_c \tau_i(t)} \cdot x_b(t - \tau_i(t)) }
+\qquad y\_b(t) = \sum\_i a\_i\^{}b(t) \cdot x\_b(t - \tau\_i(t)) ;
+\boxed{  \text{where} \; a_i^b(t) = a_i(t) \cdot e^{-j2\pi f_c \tau_i(t)} }
+\$
+
+    \textbf{Recall:}
+
+\$ \text{Linearity still holds since}
+\qquad \qquad \qquad \qquad \text{all we did is multiply linear functions}
+\$
+
+\$ \Rightarrow y\_b(t) = \int\limits\_\{-\infty\}\^{}\{\infty\}
+h\_b(\tau, t) ; x\_b(t - \tau) d\tau ;
+\implies \boxed{h_b(\tau, t) = \sum\limits_i \underbrace{a_i^b(t)}_{\color{orange}(Note_1)} \; \delta(\tau - \tau_i(t))}
+\implies\$ \textbf{LTV complex continuous-time baseband I/O channel
+representation}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\color{orange}(Note_1):\) \$ a\_i\^{}b(t) =
+  \underbrace{a_i(t)}\emph{\{\color{green}\text{slow}\} \cdot e\^{}\{-j
+  2 \pi f\_c
+  \cdot \underbrace{\tau_i (t)}}\{\color{cyan}\text{fast}\}\}\$
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\color{green}\text{slow}\): in minutes
+  \item
+    \(\color{cyan}\text{fast}\): rate of change defines rate of change
+    of \(a_i(t)\) and thus of \(h(\tau, t)\)
+  \end{itemize}
+\end{itemize}
+
+\subparagraph{\texorpdfstring{- Say not so big change in \$ a\_i\^{}b(t)
+\$ (coherence in \$ a\_i\^{}b(t) \$) corresponding to \textbf{phase
+shift} of \$ \pi/2 \(:
+        - (Note: here there’s a model of having one path.)\)}{- Say not so big change in \$ a\_i\^{}b(t) \$ (coherence in \$ a\_i\^{}b(t) \$) corresponding to phase shift of \$ /2 :
+        - (Note: here there's a model of having one path.)}}\label{say-not-so-big-change-in-a_ibt-coherence-in-a_ibt-corresponding-to-phase-shift-of-2---note-here-theres-a-model-of-having-one-path.}
+
+2\pi f\_c \tau\_i(t) \approx \frac{\pi}{2} \implies \tau\_i
+\approx \frac{1}{4f_c} \$ \(\quad \frac{\pi}{2}\) change in phase when
+delay of path changes by up to \$ \approx \frac{1}{4f_c} \$.
+
+At speed of light: \$ \Delta x\_c \approx \frac{\lambda}{4} \Rightarrow
+\$ (Recall \$ c = \lambda \cdot f \$). ( make note that
+\(f \approx f_c\) )
+
+\$ \Rightarrow T\_c = \frac{\Delta X_c}{v} = \frac{\lambda}{4v}
+\approx \frac{c}{4 \cdot f_c \cdot v} \approx \frac{1}{4D_s} \$ (Recall
+Doppler spread \$ D\_s \approx \frac{f_c V}{c} \$).
+
+    \$ \Rightarrow h\_b(t, \tau) \text{ changes } \Delta x\_c
+\approx \frac{\lambda}{4} \qquad \left( \frac{\lambda}{4}
+\approx \frac{1}{4} \qquad \frac{c}{f} \approx \frac{1}{4}
+\frac{3 \cdot 10^8 m \not{s^{-1}}}{10^9 \not{s^{-1}}} \right) \approx 7
+\text{cm}. \$ (few cm)
+
+\& reasonable at reasonable speeds (say \$ \approx 60 , \text{km/s} \$)
+
+\$ \frac{c}{4 \cdot f_c \cdot v}
+\approx \frac{3 \cdot \not{10^8}}{4 \cdot \not{10^9} \cdot \frac{60 \cdot 10^3}{3600}}
+= \frac{\overset{6}{3.\not{36}\not{00}}}{4\not{0}.\not{60}.10^3} =
+\frac{9}{1000} \approx 4 \rightarrow 5 , \text{ms} ; (\text{few} ,
+\text{ms})\$
+
+\begin{itemize}
+\item
+  \textbf{Interesting observation on frequency response of \$ h\_b(t,
+  \tau) \$:}\\
+  \$ T\_c
+  \gg \underbrace{\text{memory of channel} \approx T_d}\_\{\text{(a bit tricky)}\}
+  \$
+
+  \textbf{By definition of impulse response}\\
+  \$ \delta(t) \to \boxed{ h_b(t, \tau)} \to y\_b(t) = h\_b(t, \tau) \$.
+\item
+  \textbf{Send an impulse through channel.}
+\item
+  \textbf{All signals will be collected (from all paths) in the order of
+  what we will call ``\,``Delay Spread''\,``}:\\
+  \$ T\_d \overset{\Delta}{=} \max\limits\_\{i,j\} \textbar{}\tau\_i -
+  \tau\_j\textbar{} \qquad \tau\_i =
+  \frac{\overbrace{d_i}^{\text{distance}}}{c}, ; \tau\_j =
+  \frac{\overbrace{d_j}^{\text{distance}}}{c}. \$
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  In cellular nets (mainly urban), \textbf{typical} distance
+  \textbf{differences} \$ d\_i - d\_j \approx \text{few hundred meters}
+  \$
+\end{itemize}
+
+\$ \Rightarrow \tau\_i - \tau\_j = \frac{d_i - d_j}{c}
+\approx \frac{\text{few hundred m}}{3 \cdot 10^8 \, m s^{-1}}
+\approx \text{few} , \mu s , , (\approx 1 \to 10 \cdot 10\^{}\{-6\} ,
+\text{s}). \$
+
+\(\Rightarrow\) ``Memory of channel'' \$\qquad h\_b(\tau, t)
+\approx \text{few} , \mu s = T\_d \$
+
+\$ \qquad \text{But } T\_d \ll T\_c \approx \text{few ms.} \$
+
+\$ \Rightarrow \$ can consider channel impulse response to be almost
+\textbf{time-invariant} \emph{(But clarify what is meant by this.)}
+
+\begin{verbatim}
+(since it is only after many impulses that the channel will change).  
+\end{verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}

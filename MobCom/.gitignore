@@ -1,0 +1,9 @@
+.ipynb_checkpoints
+.DS_Store
+
+# LaTeX
+*.aux
+*.log
+*.out
+
+*.ipynb.bak
