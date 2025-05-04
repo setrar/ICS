@@ -74,7 +74,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [CompMeth](https://www.eurecom.fr/en/course/compmeth-2024spring) [🧻](https://github.com/setrar/CompMeth) ✅ | Computational Methods for digital com.         |      | 0.5  | Raymond KNOPP      | [8](prereq/8)
 | [DeepLearning](https://www.eurecom.fr/en/course/DeepLearning-2024spring) | Deep Learning                                  |      | 0.25 | Pietro MICHIARDI   |
 | [Quantip](https://www.eurecom.fr/en/course/quantip-2024spring)           | Quantum                                        |      | 0.25 | Marios KOUNTOURIS  |
-| [SP4COM](https://www.eurecom.fr/en/course/SP4COM-2024spring) [🧻](https://github.com/setrar/SP4COM) ✅ | Signal Processing for Communications |      | 0.5  | Dirk SLOCK         |
+| [SP4COM](https://www.eurecom.fr/en/course/SP4COM-2024spring) [🧻](SP4COM) ✅ | Signal Processing for Communications |      | 0.5  | Dirk SLOCK         |
 | [WebInt](https://www.eurecom.fr/en/course/webint-2024spring)             | Interaction Design and Dev. of Modern Web App  |      | 0.25 | Raphaël TRONCY     |
 | TU   ✅    | [Networking for Telecom](https://www.eurecom.fr/en/teaching/master-networks-and-telecommunication/msc-networks-and-telecommunication-intelligent/#:~:text=Networking,ECTS)| 10   |   |   |    | 
 | [InfoTheo_1](https://www.eurecom.fr/en/course/infotheo1-2024spring)      | Information Theory 1                           |      | 0.5  | Petros ELIA        |
