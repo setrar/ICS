@@ -8,4 +8,7 @@ Please read the OAIBOX manual and in particular Labs `1`, `2`, `3`, and `4` duri
 
 Please also write a short interpretation of the results.
 
-[OAIBOX5GLabManual.pdf](OAIBOX5GLabManual.pdf)
+# References
+
+- [ ] [OAIBOX5GLabManual.pdf](OAIBOX5GLabManual.pdf)
+- [ ] [OAI 5G NR SA tutorial with COTS UE](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_COTS_UE.md)
