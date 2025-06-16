@@ -48,7 +48,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [MobCom](https://www.eurecom.fr/en/course/mobcom-2024fall) [🧻](classes/MobCom) ✅  | Mobile communication techniques	               |      |  1.0 | Petros ELIA        |
 | [MathEng](https://www.eurecom.fr/en/course/matheng-2024fall) [🧻](classes/MathEng) :x: | Essential Mathematical Methods for Engineers   |      |  0.5 | Nicholas EVANS     |
 | TU   ✅     | [Language](https://www.eurecom.fr/en/course/addlang-2024spring) |  1   |                                    |      |                    | 
-| Chinese  [🧻](classes/https://github.com/setrar/chinese) ✅   |  |                                         |  1   |   Daphne Olson     | 
+| Chinese  [🧻](classes/Chinese) ✅   |  |                                         |  1   |   Daphne Olson     | 
 |---------------|---------------------| ECTS |----|--------------------|--------|
 | Total         |    (4+10+10+5+1)    |   30 |    |                    |        |
 
@@ -85,7 +85,7 @@ IN NETWORK AND TELECOMMUNICATION - [Intelligent Communication Systems (ICS)](htt
 | [IntroStat](https://www.eurecom.fr/en/course/introstat-2024spring) [🧻](classes/IntroStat) :x:  | Intro Stats  |  | .5  | Motonobu KANAGAWA|
 | [StudInit](https://www.eurecom.fr/en/course/StudInit-2024spring)  ✅     | Student Initiative                          |      |  .5    | Nassima CHARIET       |
 | TU   ✅ | [Language](https://www.eurecom.fr/en/course/addlang-2024spring) |  1   |                                     |      |                    | 
-| Chinese  [🧻](classes/https://github.com/setrar/chinese) ✅ |                            |                                            |  1   |   Daphne Olson     | 
+| Chinese  [🧻](classes/Chinese) ✅ |                            |                                            |  1   |   Daphne Olson     | 
 |---------------|---------------------| ECTS |----|--------------------|--------|
 | Total         |    (4+10+10+5+1)    |   30 |    |                    |        |
 
